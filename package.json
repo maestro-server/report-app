@@ -1,0 +1,31 @@
+{
+  "name": "reports-maestro",
+  "version": "0.1.3",
+  "description": "Flask, generete reports",
+  "main": "run.py",
+  "scripts": {
+    "server": "FLASK_APP=run.py FLASK_DEBUG=1 flask run --port=5005",
+    "celery": "celery -A app.celery worker -E -Q reports --hostname=reports@%h --loglevel=info",
+    "flower": "flower -A app.celery",
+    "save": "pip freeze -l > requirements.txt ",
+    "test": "python -m unittest report",
+    "package-flask": "docker build -t report-maestro .",
+    "package-celery": "docker build -f DockerfileCelery -t report-maestro-celery ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maestro-server/discovery-api.git"
+  },
+  "keywords": [
+    "flask",
+    "python",
+    "celery",
+    "maestro"
+  ],
+  "author": "Felipe Signorini",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maestro-server/discovery-api/issues"
+  },
+  "homepage": "https://github.com/maestro-server/discovery-api#readme"
+}
