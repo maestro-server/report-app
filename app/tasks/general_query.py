@@ -10,14 +10,11 @@ def task_qgeneral(self, type, filters):
 
     path = FactoryURL.make(path=type)
     query = json.dumps(filters)
-    context = requests.post(path, json={'query': query})
-
-    print(context.status_code)
+    context = requests.post(path, json={'query': query, 'limit': 99999})
 
     if context.status_code is 200:
         result = context.json()
-        return result
+        if result['found'] > 0:
+            insert_id = task_upload('general', result['items'])
 
-    # insert_id = task_upload.delay(result)
-
-    # return {'name': self.request.task, 'insert-id': insert_id}
+        #return {'name': self.request.task, 'upload-id': insert_id}

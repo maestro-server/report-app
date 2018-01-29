@@ -14,3 +14,6 @@ class ReportsApp(Resource):
 
         file.close()
         return pick(data, ['name', 'provider', 'description', 'version', 'license'])
+
+    def post(self):
+        pass

@@ -9,5 +9,4 @@ class FactoryFilters(object):
         for filter in input:
             Rule.exec(options=filter)
 
-        print(Rule.out())
         return Rule.out()

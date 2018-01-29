@@ -15,7 +15,6 @@ class Ruler(object):
 
 
 
-
     # Filters rules, using in getattr by exec function
     # ===================================================
 
