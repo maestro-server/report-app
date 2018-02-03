@@ -12,9 +12,10 @@ from .controller import *
 
 api = Api(app)
 
-api.add_resource(ReportsApp, '/')
+api.add_resource(HomeApp, '/')
 api.add_resource(GeneralReport, '/general')
 api.add_resource(PivotReport, '/pivot')
+api.add_resource(ReportsApp, '/reports')
 
 
 

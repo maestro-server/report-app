@@ -2,12 +2,15 @@
 import datetime
 from app import db
 from bson.objectid import ObjectId
+from pymongo import InsertOne
 from app.error.missingError import MissingError
 
 class Model(object):
 
-    def __init__(self, id=None):
-        name = self.__class__.__name__.lower()
+    def __init__(self, name=None, id=None):
+        if name is None:
+            name = self.__class__.__name__.lower()
+
         self.col = db[name]
         self.__id = id
 
@@ -31,6 +34,15 @@ class Model(object):
         set = {'$set': data}
         result = self.col.update_one(Model.makeObjectId(self.__id), set)
         return result.raw_result
+
+    def batch_process(self, data):
+        requests = []
+        for item in data:
+            cal = InsertOne(item['data'])
+            requests.append(cal)
+
+        result = self.col.bulk_write(requests)
+        return result.bulk_api_result
 
 
     def makeDateAt(self, key):

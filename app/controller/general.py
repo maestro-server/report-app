@@ -18,10 +18,10 @@ class GeneralReport(Resource):
                 filters = json.loads(valid['filters'])
                 prepared = FactoryFilters.factory(input=filters)
             except Exception as error:
-                print(error)
                 #task_notification.delay(msg=str(error), status='danger')
+                return str(error)
 
             if(prepared is not None):
-                return task_qgeneral(valid['type'], prepared)
+                general_id = task_qgeneral.delay(valid['owner_user'], valid['type'], prepared)
 
-        return valid
+                return {'filter': valid['filters'], 'general-id': str(general_id)}

@@ -1,7 +1,7 @@
-import datetime, uuid, requests, os
+import time, uuid, os
 from app import celery
-from app.libs.url import FactoryURL
 
+from app.tasks.inserts.webhook import task_webhook
 
 def batch(iterable, n=1):
     l = len(iterable)
@@ -9,21 +9,18 @@ def batch(iterable, n=1):
         yield iterable[ndx:min(ndx + n, l)]
 
 
-@celery.task(name="uplaod.api", bind=True)
+@celery.task(name="upload.api", bind=True)
 def task_upload(self, name, result):
     id = str(uuid.uuid4())
-    now = datetime.datetime.now()
+    now = time.time()
 
-    colname = '%s__%s_%s' % (name, now, id)
-    path = FactoryURL.make(path="reports", resource="MAESTRO_URL")
-
-    print(len(result))
+    colname = '%s__%s_%s' % (now, name, id)
 
     qtd = int(os.environ.get("MAESTRO_INSERT_QTD", 500))
-    for x in batch(result, qtd):
-        print(len(x))
 
-        # context = requests.post(path, json={'name': colname, 'result': result})
+    webhook_id = []
+    for piece in batch(result, qtd):
+        tt = task_webhook.delay(colname, piece)
+        webhook_id.append(str(tt))
 
-
-        # return {'name': self.request.task}
+    return {'name': self.request.task, 'colname': colname, 'webhook-id': webhook_id}
