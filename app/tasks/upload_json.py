@@ -2,6 +2,7 @@ import time, uuid, os
 from app import celery
 
 from app.tasks.inserts.webhook import task_webhook
+from app.tasks.notification import task_notification
 
 def batch(iterable, n=1):
     l = len(iterable)
@@ -10,7 +11,7 @@ def batch(iterable, n=1):
 
 
 @celery.task(name="upload.api", bind=True)
-def task_upload(self, name, result):
+def task_upload(self, report_id, name, result):
     id = str(uuid.uuid4())
     now = time.time()
 
@@ -23,4 +24,6 @@ def task_upload(self, name, result):
         tt = task_webhook.delay(colname, piece)
         webhook_id.append(str(tt))
 
-    return {'name': self.request.task, 'colname': colname, 'webhook-id': webhook_id}
+    notification_id = task_notification.delay(report_id=report_id, msg=id, status='finished')
+
+    return {'name': self.request.task, 'colname': colname, 'notification_id': str(notification_id), 'webhook-id': webhook_id}
