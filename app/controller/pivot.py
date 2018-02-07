@@ -2,7 +2,7 @@
 import json
 from flask_restful import Resource
 from app.validate.pivotValidate import Validate
-from app.services.pivotFilter import PivotFilters
+from app.services.pivotPipeline import PivotPipeline
 
 from app.tasks.pivot_query import task_qpivot
 from app.tasks.notification import task_notification
@@ -16,7 +16,7 @@ class PivotReport(Resource):
 
             try:
                 filters = json.loads(valid['filters'])
-                prepared = PivotFilters.factory(input=filters)
+                prepared = PivotPipeline.factory(input=filters)
             except Exception as error:
                 #task_notification.delay(report_id=valid['report_id'], msg=str(error), status='error')
                 return {'message': str(error)}, 501

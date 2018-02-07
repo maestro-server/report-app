@@ -2,12 +2,9 @@ import requests, json, os
 from app import celery
 from .upload_json import task_upload
 from app.libs.url import FactoryURL
+from app.libs.factoryOwnerRule import getRules
 
 from app.tasks.notification import task_notification
-
-def getRules(owner_id):
-    return {'active': True, 'roles._id': owner_id}
-
 
 @celery.task(name="qgeneral.api", bind=True)
 def task_qgeneral(self, owner_user, report_id, type, filters={}):
