@@ -16,7 +16,7 @@ class PivotReport(Resource):
 
             try:
                 filters = json.loads(valid['filters'])
-                prepared = PivotPipeline.factory(input=filters)
+                prepared = PivotPipeline.factory(input=filters, owner_id=valid['owner_user'])
             except Exception as error:
                 #task_notification.delay(report_id=valid['report_id'], msg=str(error), status='error')
                 return {'message': str(error)}, 501
