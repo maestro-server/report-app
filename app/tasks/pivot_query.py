@@ -7,7 +7,7 @@ from app.libs.factoryOwnerRule import getRules
 
 @celery.task(name="qpivot.api", bind=True)
 def task_qpivot(self, owner_user, report_id, pipeline={}):
-    print(owner_user, report_id, pipeline)
+    print(pipeline)
     return pipeline
     timeout = int(os.environ.get("MAESTRO_TIMEOUT_DISCOVERY", 10))
 

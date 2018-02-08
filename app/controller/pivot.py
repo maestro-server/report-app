@@ -22,7 +22,7 @@ class PivotReport(Resource):
                 return {'message': str(error)}, 501
 
             if(prepared is not None):
-                pivot_id = task_qpivot(valid['owner_user'], valid['report_id'], prepared)
+                return task_qpivot(valid['owner_user'], valid['report_id'], prepared)
 
                 #return {'filter': valid['filters'], 'pivot-id': str(pivot_id)}
 

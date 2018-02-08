@@ -1,8 +1,11 @@
 
 class Ruler(object):
-    __output = {}
+    
+    def __init__(self, prefix=''):
+        self.prefix = prefix
+        self.__output = {}
 
-    def exec(self, options):
+    def execute(self, options):
         res = getattr(self, options['typ'])(options)
         self.addFilter(field=res['field'], values=res['filter'])
 
@@ -11,7 +14,18 @@ class Ruler(object):
 
     def addFilter(self, field, values):
         if (values and field):
-            self.__output[field] = values
+            cstr='%s%s' % (self.getPrefix(), field)
+            print(self.prefix, cstr, field)
+            print("==============")
+            self.__output[cstr] = values
+
+    def getPrefix(self):
+        if self.prefix and isinstance(self.prefix, str):
+            return self.prefix+"."
+
+        return ''
+
+        
 
 
 
