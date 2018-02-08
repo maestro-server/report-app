@@ -4,6 +4,9 @@ from app import db
 from bson.objectid import ObjectId
 from pymongo import InsertOne
 from app.error.missingError import MissingError
+from pymongo.errors import BulkWriteError
+
+from pydash import omit
 
 class Model(object):
 
@@ -38,12 +41,14 @@ class Model(object):
     def batch_process(self, data):
         requests = []
         for item in data:
-            cal = InsertOne(item['data'])
+            cal = InsertOne(omit(item['data'], '_id'))
             requests.append(cal)
 
-        result = self.col.bulk_write(requests)
-        return result.bulk_api_result
-
+        try:
+            result = self.col.bulk_write(requests)
+            return result.bulk_api_result
+        except BulkWriteError as bwe:
+            return bwe.details
 
     def makeDateAt(self, key):
         return {key: datetime.datetime.utcnow()}

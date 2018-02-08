@@ -19,17 +19,17 @@ class ReportsApp(Resource):
             format = []
 
             for item in data['results']:
-
                 if validate(item):
                     format.append({
                         'data': item
                     })
-
+            
             if format:
                 try:
                     return Reports(data['colname']).batch_process(format)
                 except Exception as error:
                     return str(error), 500
-                    #task_notification.delay(msg=str(error), status='danger')
+
+        return valid, 400
 
 

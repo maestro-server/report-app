@@ -28,3 +28,4 @@ def task_qgeneral(self, owner_user, report_id, type, filters={}):
 
     if context.status_code in [400, 403, 404, 500, 501, 502, 503]:
         notification_id = task_notification.delay(report_id=report_id, msg=context.text, status='error')
+        return {'name': self.request.task, 'notification-id': str(notification_id)}

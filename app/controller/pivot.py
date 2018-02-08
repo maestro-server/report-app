@@ -9,21 +9,20 @@ from app.tasks.notification import task_notification
 
 class PivotReport(Resource):
     def post(self):
+        PPipeline = PivotPipeline()
         valid = Validate().validate()
 
         if valid:
-            prepared = None
-
             try:
                 filters = json.loads(valid['filters'])
-                prepared = PivotPipeline.factory(input=filters, owner_id=valid['owner_user'])
+                PPipeline.factory(input=filters, owner_id=valid['owner_user'])
             except Exception as error:
                 #task_notification.delay(report_id=valid['report_id'], msg=str(error), status='error')
                 return {'message': str(error)}, 501
 
-            if(prepared is not None):
-                return task_qpivot(valid['owner_user'], valid['report_id'], prepared)
+            if PPipeline.hasResult():
+                pivot_id = task_qpivot.delay(valid['owner_user'], valid['report_id'], PPipeline.getFirst(), PPipeline.getResult())
 
-                #return {'filter': valid['filters'], 'pivot-id': str(pivot_id)}
+                return {'filter': valid['filters'], 'pivot-id': str(pivot_id)}
 
         return valid, 502

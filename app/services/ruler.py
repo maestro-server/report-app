@@ -15,8 +15,6 @@ class Ruler(object):
     def addFilter(self, field, values):
         if (values and field):
             cstr='%s%s' % (self.getPrefix(), field)
-            print(self.prefix, cstr, field)
-            print("==============")
             self.__output[cstr] = values
 
     def getPrefix(self):

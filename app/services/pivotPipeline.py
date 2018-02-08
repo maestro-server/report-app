@@ -4,55 +4,50 @@ from app.services.factoryFilter import FactoryFilters
 from app.libs.factoryOwnerRule import getRules
 
 from pydash import get
-
+from app.services.mappers.client_system_app_server import mapperI
 
 class PivotPipeline(object):
-    @staticmethod
-    def factory(input, owner_id):
-        mapper = PivotPipeline.mapper()
+    
+    def __init__(self):
+        self.__first=None
+        self.__mapper = mapperI
+        self.__result = []
 
-        prepared = []
+    def getFirst(self):
+        return self.__first
+
+    def getResult(self):
+        return self.__result
+
+    def hasResult(self):
+        return self.getResult() is not None
+
+    def factory(self, input, owner_id):
+        mapp = self.__mapper()
+
         prev = ''
+        prepared=[]
         for key, item in input.items():
             if item['enabled'] == True:
+                
+                #get first element
+                if len(prepared) == 0:
+                    self.__first = key
 
                 # needb jump first lookup
-                if len(prepared) > 0 and key in mapper:
-                    lookup = PivotPipeline.facLookup(key, mapper, prev)
+                if len(prepared) > 0 and key in mapp:
+                    lookup = PivotPipeline.facLookup(key, mapp, prev)
 
                     prepared.append(lookup)
-                    prepared.append({"$unwind": get(mapper, '%s.unwind' % key)})
+                    prepared.append({"$unwind": get(mapp, '%s.unwind' % key)})
                     prev = key
 
                 # matches
-                if key in mapper:
+                if key in mapp:
                     match = PivotPipeline.facMatch(item['filters'], owner_id, prev)
                     prepared.append({'$match': match})
 
-               
-        return prepared
-
-    @staticmethod
-    def mapper():
-        query = {
-            "clients": {},
-            "systems": {
-                "localField": "{prev}_id",
-                "foreignField": "clients._id",
-                "unwind": {"path": "$systems", "preserveNullAndEmptyArrays": True}
-            },
-            "applications": {
-                "localField": "{prev}_id",
-                "foreignField": "system._id",
-                "unwind": {"path": '$applications', "includeArrayIndex": 'servers', "preserveNullAndEmptyArrays": True}
-            },
-            "servers": {
-                "localField": "{prev}servers",
-                "foreignField": "_id",
-                "unwind": {"path": "$servers", "preserveNullAndEmptyArrays": True}
-            }
-        }
-        return query
+        self.__result = prepared
 
     @staticmethod
     def facLookup(key, mapper, prev=''):
@@ -67,7 +62,6 @@ class PivotPipeline(object):
                 "as": key
             }
         }
-
 
     @staticmethod
     def facMatch(filters, owner_id, prefix):
