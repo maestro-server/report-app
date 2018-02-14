@@ -17,7 +17,7 @@ class PivotReport(Resource):
                 filters = json.loads(valid['filters'])
                 PPipeline.factory(input=filters, owner_id=valid['owner_user'])
             except Exception as error:
-                #task_notification.delay(report_id=valid['report_id'], msg=str(error), status='error')
+                task_notification.delay(report_id=valid['report_id'], msg=str(error), status='error')
                 return {'message': str(error)}, 501
 
             if PPipeline.hasResult():

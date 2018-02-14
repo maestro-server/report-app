@@ -1,5 +1,5 @@
 
-from app.services.ruler import Ruler
+from app.services.rules.aggregation import AggregationRuler
 
 class FactoryFilters(object):
     @staticmethod
@@ -8,7 +8,7 @@ class FactoryFilters(object):
         if len(input) <= 0:
             return {}
 
-        Rule = Ruler(prefix)
+        Rule = AggregationRuler(prefix)
         for filter in input:
             Rule.execute(options=filter)
 

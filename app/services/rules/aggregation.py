@@ -1,5 +1,5 @@
 
-class Ruler(object):
+class AggregationRuler(object):
     
     def __init__(self, prefix=''):
         self.prefix = prefix
