@@ -1,5 +1,6 @@
 import time, uuid, os
 from app import celery
+from app.libs.dataFrame import DataFrame
 
 from app.tasks.inserts.webhook import task_webhook
 from app.tasks.notification import task_notification
@@ -22,5 +23,7 @@ def task_upload(self, report_id, name, result):
         tt = task_webhook.delay(colname, piece, report_id)
         webhook_id.append(str(tt))
 
-    notification_id = task_notification.delay(report_id=report_id, msg=id, status='finished')
+
+    prefetch = DataFrame(data['items']).factoryCSV().getHeaders()
+    notification_id = task_notification.delay(report_id=report_id, msg=id, status='finished', more={'columns': prefetch})
     return {'name': self.request.task, 'colname': colname, 'notification_id': str(notification_id), 'webhook-id': webhook_id}

@@ -45,3 +45,4 @@ urllib3==1.22
 vine==1.1.4
 Werkzeug==0.12.2
 python-simplexml==0.1.5
+pandas==0.22.0

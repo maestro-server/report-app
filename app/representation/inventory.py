@@ -10,7 +10,7 @@ def output_inventory(data, code, headers=None):
 
     for item in data['items']:
         ansible = Inventory(item).maker()
-        result += '%s %s\n\r' % (get(item, 'hostname', ''), ansible.output())
+        result += '%s %s\n' % (get(item, 'hostname', ''), ansible.output())
 
     resp = app.make_response(result)
     return resp

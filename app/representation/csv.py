@@ -1,16 +1,12 @@
 
+
+from app.libs.dataFrame import DataFrame
 from app.views import api, app
 
 
 @api.representation('text/csv')
 def output_csv(data, code, headers=None):
-    items = data['items']
+    result = DataFrame(data['items']).factoryCSV()
 
-    with open('test.csv', 'w') as f:
-        f.write('Application Name, Application ID\n')
-        for key in items.keys():
-            f.write("%s,%s\n" % (key, items[key]))
-
-    data = 'some,csv,fields'
-    resp = app.make_response(data)
+    resp = app.make_response(result.output())
     return resp
