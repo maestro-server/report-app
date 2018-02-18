@@ -14,7 +14,6 @@ def batch(iterable, n=1):
 @celery.task(name="upload.api", bind=True)
 def task_upload(self, report_id, name, result):
     id = str(uuid.uuid4())
-
     colname = '%s__%s_%s' % (report_id, name, id)
 
     qtd = int(os.environ.get("MAESTRO_INSERT_QTD", 500))
@@ -23,7 +22,6 @@ def task_upload(self, report_id, name, result):
         tt = task_webhook.delay(colname, piece, report_id)
         webhook_id.append(str(tt))
 
-
-    prefetch = DataFrame(data['items']).factoryCSV().getHeaders()
+    prefetch = DataFrame(result[:50], False).getHeaders()
     notification_id = task_notification.delay(report_id=report_id, msg=id, status='finished', more={'columns': prefetch})
     return {'name': self.request.task, 'colname': colname, 'notification_id': str(notification_id), 'webhook-id': webhook_id}

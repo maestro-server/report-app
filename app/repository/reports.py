@@ -1,8 +1,7 @@
 import datetime
 from app import db
-from bson.objectid import ObjectId
+from app.repository.model import Model
 from pymongo import InsertOne
-from app.error.missingError import MissingError
 from pymongo.errors import BulkWriteError
 
 from pydash import omit
@@ -15,8 +14,9 @@ class Reports(object):
         self.col = db[name]
         self.__id = id
 
-    def getAll(self, filter = {}, limit = 10, skip = 0):
-        result = self.col.find(filter)\
+    def getAll(self, filter={}, limit=10, skip=0, orderBy='updated_at', direction=-1):
+        result = self.col.find(filter) \
+            .sort(orderBy, direction)\
             .limit(limit)\
             .skip(skip)
 
@@ -43,11 +43,3 @@ class Reports(object):
     def makeDateAt(self, key):
         return {key: datetime.datetime.utcnow()}
 
-    @staticmethod
-    def makeObjectId(id):
-        if id:
-            return {'_id': Model.castObjectId(id)}
-
-    @staticmethod
-    def castObjectId(id):
-        return ObjectId(id)

@@ -7,7 +7,6 @@ def output_txt(data, code, headers=None):
     data = ""
 
     for item in items:
-        print(item)
         row = ""
         for k, v in item.items():
             row += " - %s: %s" % (k, v)

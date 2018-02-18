@@ -1,0 +1,24 @@
+def mapperH():
+    return {
+        'active': 0,
+        'status': 1,
+        '_id': 2,
+        'name': 3,
+        'hostname': 4,
+        'ipv4_private': 5,
+        'ipv4_public': 5,
+        'tags': 5,
+        'role': 5,
+        'servers': 6,
+        'datacenters': 7,
+        'os': 7,
+        'storage': 8,
+        'services': 9,
+        'systems': 10,
+        'clients': 11,
+        'contacts': 12,
+        'owner': 97,
+        'roles': 98,
+        'updated_at': 99,
+        'created_at': 100
+    }

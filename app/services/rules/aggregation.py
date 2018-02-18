@@ -13,7 +13,7 @@ class AggregationRuler(object):
         return self.__output
 
     def addFilter(self, field, values):
-        if (values and field):
+        if (field):
             cstr='%s%s' % (self.getPrefix(), field)
             self.__output[cstr] = values
 
@@ -39,6 +39,14 @@ class AggregationRuler(object):
         if (kw['comparer'] == 'not contain'):
             filter = {'$ne': kw['filter']}
 
+        return {'field': kw['field'], 'filter': filter}
+
+    def boolean(self, kw):
+        filter = kw['filter']
+        return {'field': kw['field'], 'filter': filter == 'true'}
+
+    def select(self, kw):
+        filter = kw['filter']
         return {'field': kw['field'], 'filter': filter}
 
     def number(self, kw):

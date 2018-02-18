@@ -13,7 +13,6 @@ class GeneralReport(Resource):
 
         if valid:
             prepared = None
-
             try:
                 filters = json.loads(valid['filters'])
                 prepared = FactoryFilters.factory(input=filters)
