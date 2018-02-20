@@ -1,13 +1,8 @@
-FROM alpine:latest
+FROM maestroserver/maestro-pandas
 MAINTAINER Felipe Signorini <felipe.signorini@maestroserver.io>
 
 ENV APP_PATH=/opt/application
-
-RUN apk --no-cache add --virtual native-deps g++ gcc libgcc python3-dev
-
-RUN apk add --no-cache \
-    && python3 -m ensurepip \
-    && pip3 install --upgrade pip gunicorn
+RUN pip3 install --upgrade pip gunicorn
 
 WORKDIR $APP_PATH
 
