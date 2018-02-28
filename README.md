@@ -1,3 +1,8 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d5272664aa1f46e08d99aa13c695e663)](https://www.codacy.com/app/maestro/report-app?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=maestro-server/report-app&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/maestro-server/report-app.svg?branch=master)](https://travis-ci.org/maestro-server/report-app)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d30df800647b4c898f42/maintainability)](https://codeclimate.com/github/maestro-server/report-app/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d30df800647b4c898f42/test_coverage)](https://codeclimate.com/github/maestro-server/report-app/test_coverage)
+
 
 # Maestro Server - Report API #
 
