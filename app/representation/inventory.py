@@ -6,11 +6,16 @@ from pydash import get
 
 @api.representation('text/inventory')
 def output_inventory(data, code, headers=None):
+    rpt = []
+
     result = '[all]\n\r'
 
     for item in data['items']:
         ansible = Inventory(item).maker()
-        result += '%s %s\n' % (get(item, 'hostname', ''), ansible.output())
+
+        if ansible.getId() not in rpt:
+            result += ansible.output() + '\n'
+            rpt.append(ansible.getId())
 
     resp = app.make_response(result)
     return resp
