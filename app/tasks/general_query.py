@@ -10,7 +10,7 @@ from app.tasks.notification import task_notification
 
 @celery.task(name="qgeneral.api", bind=True)
 def task_qgeneral(self, owner_user, report_id, type, filters={}):
-    timeout = int(os.environ.get("MAESTRO_TIMEOUT_DISCOVERY", 10))
+    timeout = int(os.environ.get("MAESTRO_TIMEOUT_DATA", 10))
     type = type.lower()
 
     path = FactoryURL.make(path=type)

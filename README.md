@@ -47,7 +47,7 @@ services:
         image: maestroserver/reports-maestro-celery
         environment:
         - "MAESTRO_URL=http://reports:5005"
-        - "MAESTRO_DISCOVERY_URL=http://discovery:5000"
+        - "MAESTRO_DATA_URL=http://data:5010"
         - "CELERY_BROKER_URL=amqp://rabbitmq:5672"
 ```
 
@@ -88,7 +88,8 @@ npm run celery
 |------------------------|-----------------------|-----------------------------------------|
 | MAESTRO_MONGO_URI      | localhost             | Mongo Url conn                          |
 | MAESTRO_MONGO_DATABASE | maestro-reports       | Db name, its differente of servers-app  |
-| MAESTRO_DISCOVERY_URL  | http://localhost:5000 | Discovery API URL                       |
+| MAESTRO_DATA_URL       | http://localhost:5010 | Data APP - API URL                      |
+| MAESTRO_TIMEOUT_DATA   | 10                    | Timeout for request data api            |
 | MAESTRO_URL            | http://localhost:5005 | Report api                              |
 | MAESTRO_INSERT_QTD     | 200                   | Throughput insert in reports collection |
 | CELERY_BROKER_URL      | amqp://rabbitmq:5672  | RabbitMQ connection                     |
