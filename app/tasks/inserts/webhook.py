@@ -8,7 +8,7 @@ from app.tasks.notification import task_notification
 def task_webhook(self, name, result, report_id):
     timeout = int(os.environ.get("MAESTRO_TIMEOUT_WEBHOOK", 5))
 
-    path = FactoryURL.make(path="reports", resource="MAESTRO_URL")
+    path = FactoryURL.make(path="reports", resource="MAESTRO_REPORT_URI")
     context = requests.post(path, json={'colname': name, 'results': result}, timeout=timeout)
 
     if context.status_code in [400, 403, 404, 500, 501, 502, 503]:

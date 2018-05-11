@@ -14,7 +14,6 @@ load_dotenv(find_dotenv())
 
 class Config(object):
     TESTING = os.environ.get("TESTING", False)
-    SECRETJWT = os.environ.get("MAESTRO_SECRETJWT", "defaultSecretKey")
     DATABASE_URI = "mongodb://" + os.environ.get("MAESTRO_MONGO_URI", "localhost")
     DATABASE_NAME = os.environ.get("MAESTRO_MONGO_DATABASE", "maestro-reports")
     RESTFUL_JSON = {'cls': DateTimeEncoder}

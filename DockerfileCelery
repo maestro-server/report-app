@@ -1,8 +1,13 @@
 FROM maestroserver/maestro-pandas
 MAINTAINER Felipe Signorini <felipe.signorini@maestroserver.io>
 
-ENV APP_PATH=/opt/application
+COPY docker-entrypoint-workers.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint-workers.sh
 
+RUN apk add --no-cache tini su-exec
+RUN addgroup app && adduser -S app
+
+ENV APP_PATH=/opt/application
 WORKDIR $APP_PATH
 
 COPY ./app $APP_PATH/app
@@ -13,4 +18,5 @@ COPY run.py $APP_PATH/run.py
 
 RUN pip3 install -r requirements.txt
 
-CMD celery -A app.celery worker -l info
+ENTRYPOINT ["/sbin/tini","-g","--"]
+CMD ["docker-entrypoint-workers.sh"]
