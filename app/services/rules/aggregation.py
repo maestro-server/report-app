@@ -13,7 +13,7 @@ class AggregationRuler(object):
         return self.__output
 
     def addFilter(self, field, values):
-        if (field):
+        if ( field ):
             cstr='%s%s' % (self.getPrefix(), field)
             self.__output[cstr] = values
 
@@ -22,13 +22,6 @@ class AggregationRuler(object):
             return self.prefix+"."
 
         return ''
-
-        
-
-
-
-    # Filters rules, using in getattr by exec function
-    # ===================================================
 
     def string(self, kw):
         filter = kw['filter']

@@ -19,7 +19,7 @@ db = client[app.config['DATABASE_NAME']]
 celery = make_celery(app)
 
 try:
-    client.server_info() # Forces a call.
+    client.server_info()
     logger.info("Mongo Online")
 except pymongo.errors.ServerSelectionTimeoutError as err:
     logger.error("==================================> MongoDB is down %s", err)
