@@ -1,6 +1,12 @@
 FROM maestroserver/maestro-pandas
 MAINTAINER Felipe Signorini <felipe.signorini@maestroserver.io>
 
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+RUN apk add --no-cache tini su-exec
+RUN addgroup app && adduser -S app
+
 ENV APP_PATH=/opt/application
 RUN pip3 install --upgrade pip gunicorn
 
@@ -15,4 +21,5 @@ COPY gunicorn_config.py /opt/gunicorn_config.py
 
 RUN pip3 install -r requirements.txt
 
-CMD ["/usr/bin/gunicorn", "--config", "/opt/gunicorn_config.py", "run:app"]
+ENTRYPOINT ["/sbin/tini","-g","--"]
+CMD ["docker-entrypoint.sh"]
