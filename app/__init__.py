@@ -24,5 +24,4 @@ try:
 except pymongo.errors.ServerSelectionTimeoutError as err:
     logger.error("==================================> MongoDB is down %s", err)
 
-from app import views
 from app.representation import *

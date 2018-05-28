@@ -1,6 +1,6 @@
-
 from simplexml import dumps
 from app.views import api, app
+
 
 @api.representation('application/xml')
 def output_xml(data, code, headers=None):

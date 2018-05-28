@@ -1,5 +1,6 @@
 
-import re, datetime
+import re
+import datetime
 from pydash.objects import get
 from app.repository.model import Model
 from app.services.iterators.iRuler import IteratorRuler

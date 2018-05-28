@@ -1,12 +1,12 @@
-
 from pydash import py_
+
 
 class Inventory:
     def __init__(self, item):
         self.__result = ''
         self.__chain = py_(item)
         self._id = self.makeId()
-        
+
     def maker(self):
         self.makeHostname()
         self.makeHost()
@@ -30,7 +30,8 @@ class Inventory:
         self.factoryAnsibleVars(options, '', '', '')
 
     def makeHost(self):
-        options = ['dns_internal', 'ipv4_private', 'ipv4_public', 'hostname', 'servers.ipv4_private', 'servers.ipv4_public', 'servers.hostname']
+        options = ['dns_internal', 'ipv4_private', 'ipv4_public', 'hostname', 'servers.ipv4_private',
+                   'servers.ipv4_public', 'servers.hostname']
         self.factoryAnsibleVars(options, 'ansible_host')
 
     def makePort(self):
@@ -44,7 +45,7 @@ class Inventory:
     def makeKeyFile(self):
         options = ['ansible.key']
         self.factoryAnsibleVars(options, 'ansible_ssh_private_key_file')
-        
+
     def factoryAnsibleVars(self, options, var, separator='=', prefix=' '):
         rs = self.chainVars(options)
         if rs:

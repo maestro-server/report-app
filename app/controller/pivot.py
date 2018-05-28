@@ -1,4 +1,3 @@
-
 import json
 from flask_restful import Resource
 
@@ -6,6 +5,7 @@ from app.validate.pivotValidate import Validate
 from app.services.pivotPipeline import PivotPipeline
 from app.tasks.pivot_query import task_qpivot
 from app.tasks.notification import task_notification
+
 
 class PivotReport(Resource):
     def post(self):
@@ -21,7 +21,8 @@ class PivotReport(Resource):
                 return {'message': str(error)}, 501
 
             if PPipeline.hasResult():
-                pivot_id = task_qpivot.delay(valid['owner_user'], valid['report_id'], PPipeline.getFirst(), PPipeline.getResult())
+                pivot_id = task_qpivot.delay(valid['owner_user'], valid['report_id'], PPipeline.getFirst(),
+                                             PPipeline.getResult())
 
                 return {'filter': valid['filters'], 'pivot-id': str(pivot_id)}
 

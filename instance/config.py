@@ -7,7 +7,6 @@ Licence: GPLv3
 import os
 from app.libs.jsonEncoder import DateTimeEncoder
 from dotenv import load_dotenv, find_dotenv
-from kombu import Queue
 
 load_dotenv(find_dotenv())
 

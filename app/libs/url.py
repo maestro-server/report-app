@@ -1,5 +1,5 @@
-
 import os
+
 
 class FactoryURL(object):
     @staticmethod
@@ -13,6 +13,7 @@ class FactoryDataURL(object):
     @staticmethod
     def make(path=""):
         return FactoryURL.make(path, "MAESTRO_DATA_URI")
+
 
 class FactoryReportURL(object):
     @staticmethod

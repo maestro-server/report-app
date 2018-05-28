@@ -1,9 +1,10 @@
-
-import uuid, os
+import uuid
+import os
 from app import celery
 from app.libs.dataFrame import DataFrame
 from app.tasks.inserts.webhook import task_webhook
 from app.tasks.notification import task_notification
+
 
 def batch(iterable, n=1):
     l = len(iterable)
@@ -23,5 +24,7 @@ def task_upload(self, report_id, name, result):
         webhook_id.append(str(tt))
 
     prefetch = DataFrame(result[:50], False).getHeaders()
-    notification_id = task_notification.delay(report_id=report_id, msg=id, status='finished', more={'columns': prefetch})
-    return {'name': self.request.task, 'colname': colname, 'notification_id': str(notification_id), 'webhook-id': webhook_id}
+    notification_id = task_notification.delay(report_id=report_id, msg=id, status='finished',
+                                              more={'columns': prefetch})
+    return {'name': self.request.task, 'colname': colname, 'notification_id': str(notification_id),
+            'webhook-id': webhook_id}

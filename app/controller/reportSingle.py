@@ -1,5 +1,5 @@
-
-import os, json
+import os
+import json
 from math import ceil
 from flask import request
 from flask_restful import Resource
@@ -9,20 +9,21 @@ from app.repository.model import Model
 from app.services.filter import FilterAPI
 from app.repository.reports import Reports
 
-class ReportSingleApp(Resource):
 
+class ReportSingleApp(Resource):
     def get(self, table_name):
         Report = Reports(table_name)
         req = request.args.to_dict()
 
-        pagination = defaults(req, {'limit': os.environ.get("MAESTRO_REPORT_RESULT_QTD", 1500), 'page': 1, 'orderBy': 'updated_at', 'ascending': -1})
+        pagination = defaults(req, {'limit': os.environ.get("MAESTRO_REPORT_RESULT_QTD", 1500), 'page': 1,
+                                    'orderBy': 'updated_at', 'ascending': -1})
         limit = int(pagination['limit'])
         page = int(pagination['page'])
         skip = (page - 1) * limit
         direction = 1 if int(pagination['ascending']) else -1
         orderBy = pagination['orderBy']
 
-        query={}
+        query = {}
         if has(req, 'query'):
             query = json.loads(req['query'])
 

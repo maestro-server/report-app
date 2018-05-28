@@ -1,10 +1,10 @@
-
 from app.services.rules.aggregation import AggregationRuler
+
 
 class FactoryFilters(object):
     @staticmethod
     def factory(input=[], prefix=''):
-     
+
         if len(input) <= 0:
             return {}
 

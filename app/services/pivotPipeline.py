@@ -1,14 +1,13 @@
-
 import copy
 from pydash import get
 from app.services.factoryFilter import FactoryFilters
 from app.libs.factoryOwnerRule import getRules
 from app.services.mappers.client_system_app_server import mapperI
 
+
 class PivotPipeline(object):
-    
     def __init__(self):
-        self.__first=None
+        self.__first = None
         self.__mapper = mapperI
         self.__result = []
 
@@ -25,11 +24,11 @@ class PivotPipeline(object):
         mapp = self.__mapper()
 
         prev = ''
-        prepared=[]
+        prepared = []
         for key, item in input.items():
-            if item['enabled'] == True:
-                
-                #get first element
+            if item['enabled'] is True:
+
+                # get first element
                 if len(prepared) == 0:
                     self.__first = key
 

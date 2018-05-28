@@ -10,6 +10,7 @@
     "flower": "flower -A app.celery",
     "save": "pip freeze -l > requirements.txt ",
     "test": "python -m unittest report",
+    "lint": "flake8 app/",
     "package-flask": "docker build -t report-maestro .",
     "package-celery": "docker build -f DockerfileCelery -t report-maestro-celery ."
   },

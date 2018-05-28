@@ -1,6 +1,4 @@
-
 class AggregationRuler(object):
-    
     def __init__(self, prefix=''):
         self.prefix = prefix
         self.__output = {}
@@ -13,13 +11,13 @@ class AggregationRuler(object):
         return self.__output
 
     def addFilter(self, field, values):
-        if ( field ):
-            cstr='%s%s' % (self.getPrefix(), field)
+        if (field):
+            cstr = '%s%s' % (self.getPrefix(), field)
             self.__output[cstr] = values
 
     def getPrefix(self):
         if self.prefix and isinstance(self.prefix, str):
-            return self.prefix+"."
+            return self.prefix + "."
 
         return ''
 

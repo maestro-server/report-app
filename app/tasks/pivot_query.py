@@ -1,5 +1,6 @@
-
-import os, json, requests
+import os
+import json
+import requests
 from app import celery
 from app.libs.url import FactoryDataURL
 from .upload_json import task_upload

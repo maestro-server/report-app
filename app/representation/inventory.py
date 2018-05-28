@@ -1,7 +1,6 @@
-
-
 from app.views import api, app
 from app.libs.inventory import Inventory
+
 
 @api.representation('text/inventory')
 def output_inventory(data, code, headers=None):

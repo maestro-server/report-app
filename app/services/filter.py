@@ -1,9 +1,8 @@
-
 from pydash.objects import defaults, get, merge
 from app.services.rules.ruler import Ruler
 
-class FilterAPI(object):
 
+class FilterAPI(object):
     def __init__(self):
         self.__filter = {}
         self.__default = {}
@@ -24,7 +23,7 @@ class FilterAPI(object):
 
     def addBatchFilters(self, arr):
         for key, item in arr.items():
-           self.addFilters(key, item)
+            self.addFilters(key, item)
 
         return self
 

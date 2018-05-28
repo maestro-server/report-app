@@ -1,10 +1,11 @@
-
-import io, csv
+import io
+import csv
 import pandas as pd
 from pydash import get
 from pandas.io.json import json_normalize
 
 from app.services.mappers.columns_header import mapperH
+
 
 class DataFrame:
     def __init__(self, items, normalize=True):
@@ -13,7 +14,6 @@ class DataFrame:
 
         dt = json_normalize(items) if normalize else items
         self.__dt = pd.DataFrame(dt)
-
 
     def factoryCSV(self):
         self.__result = self.__dt.to_csv(self.__output, sep=',', quoting=csv.QUOTE_NONNUMERIC)

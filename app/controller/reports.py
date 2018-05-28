@@ -1,5 +1,3 @@
-
-
 from flask import request
 from flask_restful import Resource
 
@@ -8,8 +6,8 @@ from app.validate.integrityData import validate
 from app.repository.reports import Reports
 from app.validate.webhookValidate import Validate
 
-class ReportsApp(Resource):
 
+class ReportsApp(Resource):
     def post(self):
         valid = Validate().validate()
 
@@ -23,7 +21,7 @@ class ReportsApp(Resource):
                     format.append({
                         'data': item
                     })
-            
+
             if format:
                 try:
                     return Reports(data['colname']).batch_process(format)
@@ -32,5 +30,3 @@ class ReportsApp(Resource):
                     return str(error), 500
 
         return valid, 400
-
-
