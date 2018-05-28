@@ -13,7 +13,7 @@ def task_qgeneral(self, owner_user, report_id, type, filters={}):
     timeout = int(os.environ.get("MAESTRO_TIMEOUT_DATA", 10))
     type = type.lower()
 
-    path = FactoryURL.make(path=type)
+    path = FactoryURL.make(path=type, resource="MAESTRO_URL")
     rules = getRules(owner_user)
 
     query = {**rules, **filters}

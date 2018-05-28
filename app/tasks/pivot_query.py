@@ -10,7 +10,7 @@ from .notification import task_notification
 def task_qpivot(self, owner_user, report_id, entity, pipeline={}):
     timeout = int(os.environ.get("MAESTRO_TIMEOUT_DISCOVERY", 10))
 
-    path = FactoryURL.make("aggregate")
+    path = FactoryURL.make("aggregate", resource="MAESTRO_URL")
     jpipeline = json.dumps(pipeline)
 
     context = requests.post(path, json={'entity': entity, 'pipeline': jpipeline}, timeout=timeout)
