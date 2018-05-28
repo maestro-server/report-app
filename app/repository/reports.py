@@ -1,10 +1,10 @@
+
 import datetime
-from app import db
-from app.repository.model import Model
 from pymongo import InsertOne
 from pymongo.errors import BulkWriteError
-
 from pydash import omit
+from app import db
+from app.repository.model import Model
 
 class Reports(object):
     def __init__(self, name=None, id=None):

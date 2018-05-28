@@ -1,11 +1,10 @@
+
 import requests, json, os
+from pydash import has
 from app import celery
 from .upload_json import task_upload
 from app.libs.url import FactoryDataURL
 from app.libs.factoryOwnerRule import getRules
-
-from pydash import has
-
 from app.tasks.notification import task_notification
 
 @celery.task(name="qgeneral.api", bind=True)

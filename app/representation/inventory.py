@@ -2,7 +2,6 @@
 
 from app.views import api, app
 from app.libs.inventory import Inventory
-from pydash import get
 
 @api.representation('text/inventory')
 def output_inventory(data, code, headers=None):

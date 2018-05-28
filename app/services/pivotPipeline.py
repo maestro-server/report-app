@@ -1,9 +1,8 @@
 
-import copy, json
+import copy
+from pydash import get
 from app.services.factoryFilter import FactoryFilters
 from app.libs.factoryOwnerRule import getRules
-
-from pydash import get
 from app.services.mappers.client_system_app_server import mapperI
 
 class PivotPipeline(object):

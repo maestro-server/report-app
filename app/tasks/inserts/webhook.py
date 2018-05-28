@@ -1,8 +1,8 @@
+
 import requests, os
 from app import celery
 from app.libs.url import FactoryReportURL
 from app.tasks.notification import task_notification
-
 
 @celery.task(name="webhook.api", bind=True)
 def task_webhook(self, name, result, report_id):

@@ -1,8 +1,8 @@
 
-import io, csv, json
+import io, csv
 import pandas as pd
-from pandas.io.json import json_normalize
 from pydash import get
+from pandas.io.json import json_normalize
 
 from app.services.mappers.columns_header import mapperH
 

@@ -1,5 +1,5 @@
 
-from pydash import get, py_
+from pydash import py_
 
 class Inventory:
     def __init__(self, item):

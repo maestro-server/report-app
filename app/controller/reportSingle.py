@@ -1,11 +1,11 @@
 
-import os,json
+import os, json
 from math import ceil
 from flask import request
 from flask_restful import Resource
-from app.repository.model import Model
-
 from pydash import defaults, has
+
+from app.repository.model import Model
 from app.services.filter import FilterAPI
 from app.repository.reports import Reports
 
@@ -31,7 +31,6 @@ class ReportSingleApp(Resource):
             .make()
 
         count = Report.count(args)
-        print(count)
         return {
             'found': count,
             'total_pages': ceil(count / limit),

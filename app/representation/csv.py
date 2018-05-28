@@ -1,8 +1,6 @@
 
-
-from app.libs.dataFrame import DataFrame
 from app.views import api, app
-
+from app.libs.dataFrame import DataFrame
 
 @api.representation('text/csv')
 def output_csv(data, code, headers=None):

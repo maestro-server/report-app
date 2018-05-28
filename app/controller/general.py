@@ -1,10 +1,10 @@
 
 import json
 from flask_restful import Resource
+
 from app.libs.logger import logger
 from app.services.factoryFilter import FactoryFilters
 from app.validate.generalValidate import Validate
-
 from app.tasks.general_query import task_qgeneral
 from app.tasks.notification import task_notification
 

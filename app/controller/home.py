@@ -1,8 +1,10 @@
 
 import os, json
-from app import app
 from pydash.objects import pick
 from flask_restful import Resource
+
+from app import app
+
 
 class HomeApp(Resource):
     def get(self):

@@ -1,7 +1,7 @@
-import time, uuid, os
+
+import uuid, os
 from app import celery
 from app.libs.dataFrame import DataFrame
-
 from app.tasks.inserts.webhook import task_webhook
 from app.tasks.notification import task_notification
 
