@@ -1,7 +1,7 @@
 
 import os, json, requests
 from app import celery
-from app.libs.url import FactoryURL
+from app.libs.url import FactoryDataURL
 from .upload_json import task_upload
 from .notification import task_notification
 
@@ -10,7 +10,7 @@ from .notification import task_notification
 def task_qpivot(self, owner_user, report_id, entity, pipeline={}):
     timeout = int(os.environ.get("MAESTRO_TIMEOUT_DATA", 10))
 
-    path = FactoryURL.make("aggregate", resource="MAESTRO_URL")
+    path = FactoryDataURL.make("aggregate")
     jpipeline = json.dumps(pipeline)
 
     context = requests.post(path, json={'entity': entity, 'pipeline': jpipeline}, timeout=timeout)

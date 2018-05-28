@@ -89,6 +89,7 @@ npm run celery
 | MAESTRO_MONGO_DATABASE | maestro-reports       | Db name, its differente of servers-app  |
 | MAESTRO_DATA_URI       | http://localhost:5010 | Data APP - API URL                      |
 | MAESTRO_TIMEOUT_DATA   | 10                    | Timeout for request data api            |
+| MAESTRO_TIMEOUT_WEBHOOK| 10                    | TImeout for request insert api          | 
 | MAESTRO_REPORT_URI     | http://localhost:5005 | Report api                              |
 | MAESTRO_INSERT_QTD     | 200                   | Throughput insert in reports collection |
 | CELERY_BROKER_URL      | amqp://rabbitmq:5672  | RabbitMQ connection                     |

@@ -1,7 +1,7 @@
 import requests, json, os
 from app import celery
 from .upload_json import task_upload
-from app.libs.url import FactoryURL
+from app.libs.url import FactoryDataURL
 from app.libs.factoryOwnerRule import getRules
 
 from pydash import has
@@ -13,7 +13,7 @@ def task_qgeneral(self, owner_user, report_id, type, filters={}):
     timeout = int(os.environ.get("MAESTRO_TIMEOUT_DATA", 10))
     type = type.lower()
 
-    path = FactoryURL.make(path=type, resource="MAESTRO_URL")
+    path = FactoryDataURL.make(path=type)
     rules = getRules(owner_user)
 
     query = {**rules, **filters}

@@ -1,6 +1,7 @@
 
 import json
 from flask_restful import Resource
+from app.libs.logger import logger
 from app.services.factoryFilter import FactoryFilters
 from app.validate.generalValidate import Validate
 
@@ -18,6 +19,7 @@ class GeneralReport(Resource):
                 prepared = FactoryFilters.factory(input=filters)
             except Exception as error:
                 task_notification.delay(report_id=valid['report_id'], msg=str(error), status='error')
+                logger.error("Report: Task [general] - %s", error)
                 return {'message': str(error)}, 501
 
             if(prepared is not None):

@@ -31,6 +31,7 @@ class ReportSingleApp(Resource):
             .make()
 
         count = Report.count(args)
+        print(count)
         return {
             'found': count,
             'total_pages': ceil(count / limit),

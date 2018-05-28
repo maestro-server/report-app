@@ -8,6 +8,7 @@ from flask import Flask
 import pymongo
 from pymongo import MongoClient
 from .celery import make_celery
+from app.libs.logger import logger
 
 app = Flask(__name__)
 app.config.from_object('instance.config.Config')
@@ -20,6 +21,6 @@ celery = make_celery(app)
 
 try:
     client.server_info() # Forces a call.
-    print("Mongo Online")
+    logger.info("Mongo Online")
 except pymongo.errors.ServerSelectionTimeoutError as err:
-    print("==================================> MongoDB is down", err)
+    logger.error("==================================> MongoDB is down %", err)
