@@ -18,4 +18,4 @@ class FactoryDataURL(object):
 class FactoryReportURL(object):
     @staticmethod
     def make(path=""):
-        return FactoryURL.make(path, "MAESTRO_REPORT_URL")
+        return FactoryURL.make(path, "MAESTRO_REPORT_URI")
