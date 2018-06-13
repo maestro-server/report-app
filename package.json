@@ -1,6 +1,6 @@
 {
   "name": "reports-maestro",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Flask, generete reports",
   "main": "run.py",
   "scripts": {
