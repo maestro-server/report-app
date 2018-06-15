@@ -13,7 +13,6 @@ def task_webhook(self, name, result, report_id):
     context = requests.post(path, json={'colname': name, 'results': result}, timeout=timeout)
 
     if check_status(context):
-        notification_id = notify_error(report_id, context.text)
-        return string_status(self.request.task, notification_id)
+        return notify_error(self.request.tas, report_id, context.text)
 
     return {'name': self.request.task, 'status_code': context.status_code, 'qtd': len(result)}

@@ -26,5 +26,4 @@ def task_qpivot(self, owner_user, report_id, entity, pipeline={}):
         task_notification.delay(report_id=report_id, msg="This report is empty", status='warning')
 
     if check_status(context):
-        notification_id = notify_error(report_id, context.text)
-        return string_status(self.request.task, notification_id)
+        return notify_error(self.request.tas, report_id, context.text)
