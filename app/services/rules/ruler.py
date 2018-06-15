@@ -20,20 +20,28 @@ class Ruler(object):
     def searchAt(key, rule):
         time = re.search('_at', key)
 
-        if time:
-            if isinstance(rule) is dict:
-                for k, v in rule.items():
-                    rule[k] = Ruler.makeDatetime(v)
+        if time and rule:
+            rule = Ruler.enumSearchAt(rule)
 
-            if isinstance(rule) is str:
-                rule = Ruler.makeDatetime(rule)
+        return rule
+
+    @staticmethod   
+    def enumSearchAt(rule):
+        if isinstance(rule, dict):
+            for k, v in rule.items():
+                rule[k] = Ruler.makeDatetime(v)
+
+        if isinstance(rule, str):
+            rule = Ruler.makeDatetime(rule)
 
         return rule
 
     @staticmethod
     def makeDatetime(rule):
         if type(rule) is str:
-            return datetime.datetime.strptime(rule[:19] + "Z", "%Y-%m-%dT%H:%M:%SZ")
+            return datetime.datetime.strptime(
+                                              rule[:19] + "Z",
+                                              "%Y-%m-%dT%H:%M:%SZ")
 
     @staticmethod
     def makeObjectId(key, rule):
