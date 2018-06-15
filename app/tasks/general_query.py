@@ -7,7 +7,7 @@ from .upload_json import task_upload
 from app.libs.url import FactoryDataURL
 from app.libs.factoryOwnerRule import getRules
 from app.tasks.notification import task_notification
-from app.libs.status_code import check_status, string_status
+import app.libs.statusCode
 
 
 @celery.task(name="qgeneral.api", bind=True)
@@ -32,5 +32,5 @@ def task_qgeneral(self, owner_user, report_id, type, filters={}):
         task_notification.delay(report_id=report_id, msg="This report is empty", status='warning')
 
     if check_status(context):
-        notification_id = task_notification.delay(report_id=report_id, msg=context.text, status='error')
+        notification_id = notify_error(report_id, context.text)
         return string_status(self.request.task, notification_id)

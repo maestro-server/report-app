@@ -5,7 +5,7 @@ from .upload_json import task_upload
 from .notification import task_notification
 from app import celery
 from app.libs.url import FactoryDataURL
-from app.libs.status_code import check_status, string_status
+import app.libs.statusCode
 
 
 @celery.task(name="qpivot.api", bind=True)
@@ -26,5 +26,5 @@ def task_qpivot(self, owner_user, report_id, entity, pipeline={}):
         task_notification.delay(report_id=report_id, msg="This report is empty", status='warning')
 
     if check_status(context):
-        notification_id = task_notification.delay(report_id=report_id, msg=context.text, status='error')
+        notification_id = notify_error(report_id, context.text)
         return string_status(self.request.task, notification_id)

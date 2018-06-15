@@ -7,7 +7,7 @@ jobs:
   include:
     - stage: unit test
       script:
-      - python -m unittest discover
+      - python -m unittest discover -s app/tests/
 
     - stage: coverage
       script:

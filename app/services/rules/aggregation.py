@@ -61,7 +61,7 @@ class AggregationRuler(object):
 
     def date(self, kw):
         return self.byNumber(kw, 'after', 'before')
-    
+
     def byNumber(self, kw, after, before):
         filter = kw['filter']
 
