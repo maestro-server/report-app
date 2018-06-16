@@ -1,6 +1,6 @@
 {
   "name": "reports-maestro",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "description": "Flask, generete reports",
   "main": "run.py",
   "scripts": {
@@ -9,7 +9,7 @@
     "celery": "celery -A app.celery worker -E -Q reports --hostname=reports@%h --loglevel=info",
     "flower": "flower -A app.celery",
     "save": "pip freeze -l > requirements.txt ",
-    "test": "python -m unittest report",
+    "test": "python -m unittest discover -s app/tests/",
     "lint": "flake8 app/",
     "package-flask": "docker build -t report-maestro .",
     "package-celery": "docker build -f DockerfileCelery -t report-maestro-celery ."

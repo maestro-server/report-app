@@ -23,7 +23,6 @@ class AggregationRuler(object):
 
     def string(self, kw):
         filter = kw['filter']
-
         if (kw['comparer'] == 'contain'):
             filter = {'$regex': '%s' % kw['filter']}
 
@@ -38,17 +37,6 @@ class AggregationRuler(object):
 
     def select(self, kw):
         filter = kw['filter']
-        return {'field': kw['field'], 'filter': filter}
-
-    def number(self, kw):
-        filter = kw['filter']
-
-        if (kw['comparer'] == 'greater'):
-            filter = {'$gte': kw['filter']}
-
-        if (kw['comparer'] == 'less'):
-            filter = {'$lte': kw['filter']}
-
         return {'field': kw['field'], 'filter': filter}
 
     def object(self, kw):
@@ -68,13 +56,19 @@ class AggregationRuler(object):
 
         return {'field': kw['field'], 'filter': filter}
 
+    def number(self, kw):
+        return self.byNumber(kw, 'greater', 'less')
+
     def date(self, kw):
+        return self.byNumber(kw, 'after', 'before')
+
+    def byNumber(self, kw, after, before):
         filter = kw['filter']
 
-        if (kw['comparer'] == 'after'):
+        if (kw['comparer'] == after):
             filter = {'$gte': kw['filter']}
 
-        if (kw['comparer'] == 'before'):
+        if (kw['comparer'] == before):
             filter = {'$lte': kw['filter']}
 
         return {'field': kw['field'], 'filter': filter}

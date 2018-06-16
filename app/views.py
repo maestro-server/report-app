@@ -20,5 +20,5 @@ api.add_resource(ReportSingleApp, '/reports/<table_name>')
 
 
 @app.errorhandler(404)
-def error():
-    return jsonify({'error': 'Resource not found'})
+def error(e):
+    return jsonify({'error': 'Resource not found'}), 404

@@ -7,7 +7,15 @@ jobs:
   include:
     - stage: unit test
       script:
-      - python -m unittest discover
+      - python -m unittest discover -s app/tests/
+
+    - stage: coverage
+      script:
+        - pip install codeclimate-test-reporter coverage==4.3 python-coveralls
+        - coverage run --source=app -m unittest discover -s app/tests/
+      after_success:
+        - codeclimate-test-reporter
+        - coveralls
 
     - stage: build docker image - flask (base)
       if: branch != master
