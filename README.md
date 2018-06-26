@@ -85,6 +85,7 @@ npm run celery
 
 | Env Variables          | Example               | Description                             |
 |------------------------|-----------------------|-----------------------------------------|
+| MAESTRO_PORT           | 5005                  | Reports API Port                        |
 | MAESTRO_MONGO_URI      | localhost             | Mongo Url conn                          |
 | MAESTRO_MONGO_DATABASE | maestro-reports       | Db name, its differente of servers-app  |
 | MAESTRO_DATA_URI       | http://localhost:5010 | Data APP - API URL                      |
