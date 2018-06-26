@@ -16,4 +16,4 @@ def task_notification(self, report_id, msg, status='success', more={}):
     if check_status(context):
         logger.error("Reports: TASK [notification] - %s", context.text)
 
-    return {'name': self.request.task, 'report_id': report_id, 'status': status}
+    return {'name': self.request.task, 'report_id': report_id, 'status': context.status_code}
