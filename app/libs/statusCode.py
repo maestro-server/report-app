@@ -1,6 +1,4 @@
 
-from app.tasks.notification import task_notification
-
 
 def check_status(context):
     return context.status_code in [400, 403, 404, 500, 501, 502, 503]
