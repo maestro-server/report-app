@@ -2,7 +2,7 @@ import requests
 from app import celery
 from app.libs.logger import logger
 from app.libs.url import FactoryDataURL
-import app.libs.statusCode
+from app.libs.statusCode import check_status
 
 
 @celery.task(name="notification.api", bind=True)

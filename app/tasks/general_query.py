@@ -32,4 +32,4 @@ def task_qgeneral(self, owner_user, report_id, type, filters={}):
         task_notification.delay(report_id=report_id, msg="This report is empty", status='warning')
 
     if check_status(context):
-        return notify_error(self.request.tas, report_id, context.text)
+        return notify_error(self.request.task, report_id, context.text)
