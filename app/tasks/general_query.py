@@ -7,7 +7,8 @@ from .upload_json import task_upload
 from app.libs.url import FactoryDataURL
 from app.libs.factoryOwnerRule import getRules
 from app.tasks.notification import task_notification
-import app.libs.statusCode
+from app.libs.statusCode import check_status
+from app.libs.notifyError import notify_error
 
 
 @celery.task(name="qgeneral.api", bind=True)

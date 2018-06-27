@@ -5,11 +5,12 @@ from .upload_json import task_upload
 from .notification import task_notification
 from app import celery
 from app.libs.url import FactoryDataURL
-from app.libs.statusCode import check_status, notify_error, string_status
+from app.libs.statusCode import check_status, string_status
+from app.libs.notifyError import notify_error
 
 
 @celery.task(name="qpivot.api", bind=True)
-def task_qpivot(self, owner_user, report_id, entity, pipeline={}):
+def task_qpivot(self, report_id, entity, pipeline={}):
     timeout = int(os.environ.get("MAESTRO_TIMEOUT_DATA", 10))
 
     path = FactoryDataURL.make("aggregate")
