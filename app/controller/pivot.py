@@ -21,7 +21,7 @@ class PivotReport(Resource):
                 return {'message': str(error)}, 501
 
             if PPipeline.hasResult():
-                pivot_id = task_qpivot.delay(valid['report_id'], PPipeline.getFirst(),
+                pivot_id = task_qpivot.delay(valid['owner_user'], valid['report_id'], PPipeline.getFirst(),
                                              PPipeline.getResult())
 
                 return {'filter': valid['filters'], 'pivot-id': str(pivot_id)}
