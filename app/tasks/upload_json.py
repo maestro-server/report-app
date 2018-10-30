@@ -27,7 +27,7 @@ def task_upload(report_id, owner_user, name, result):
     prefetch = DataFrame(result[:50], False).getHeaders()
     notification_id = task_notification.delay(report_id=report_id, msg=id, status='finished',
                                               more={'columns': prefetch})
-    task_ws.delay(colname, owner_user)
+    task_ws.delay(name, report_id, owner_user)
 
 
     return {'colname': colname, 'notification_id': str(notification_id),

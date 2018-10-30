@@ -3,11 +3,10 @@ from app import celery
 from app.repository.externalMaestroWS import ExternalMaestroWS
 
 @celery.task(name="ws.api")
-def task_ws(colname, owner_id, status='success'):
+def task_ws(name, report_id, owner_id, status='success'):
     msg = "Finish Sync"
+    title = "%s (%s)" % (name, report_id)
     channel = "maestro#%s" % owner_id
-
-    print(msg, channel)
 
     body = {
         "method": "publish",
@@ -15,12 +14,12 @@ def task_ws(colname, owner_id, status='success'):
             "channel": channel,
             "data": {
                 "notify": {
-                    "title": colname,
+                    "title": title,
                     "msg": msg,
                     "type": status
                 },
                 "event": {
-                    "caller": "connections-update"
+                    "caller": "reports-update"
                 }
             }
         }
