@@ -19,7 +19,7 @@ def task_ws(name, report_id, owner_id, status='success'):
                     "type": status
                 },
                 "event": {
-                    "caller": "reports-update"
+                    "caller": ["reports-update", "reports-{}".format(report_id)]
                 }
             }
         }
