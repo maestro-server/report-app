@@ -10,6 +10,10 @@ Maestro Server is an open source software platform for management and discovery 
 ### Demo ###
 To test out the demo, [Demo Online](http://demo.maestroserver.io "Demo Online")
 
+## Documentation ##
+* [UserGuide](http://docs.maestroserver.io/en/latest/userguide/cloud_inventory/reports.html "Reports User Guide")
+* [API Contract](https://maestro-server.github.io/report-app/ "API Contract")
+
 # Maestro Server - Reports API #
 
 * Understand complex queries and generate reports
