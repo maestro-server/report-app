@@ -15,7 +15,7 @@ class ReportsApp(Resource):
         @apiGroup Reports
         @apiDescription Clone the result on new database, used by reports worker
 
-        @apiParam(Param) {String} colname Colname
+        @apiParam(Param) {String} colname Name of the columm
         @apiParam(Param) {Array} results Results, clone the data on new db
 
         @apiSuccessExample {json} Success-Response:

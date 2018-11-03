@@ -63,8 +63,7 @@ class ReportSingleApp(Resource):
 
         @apiSuccessExample {json} Success-Response:
                 HTTP/1.1 204
-                 {
-                 }
+                 {}
         """
         try:
             data = Model().deleteCollection(table_name)
