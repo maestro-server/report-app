@@ -1,0 +1,1 @@
+{  "name": "API-Reports Maestro - Reports Creator",  "version": "0.4.0",  "description": "API documentation - RestFull",  "apidoc": "0.3.0",  "order": [    "Ping",    "Crawler"  ],  "sampleUrl": false,  "defaultVersion": "0.0.0",  "generator": {    "name": "apidoc",    "time": "2018-11-03T22:23:45.307Z",    "url": "http://apidocjs.com",    "version": "0.17.6"  }}

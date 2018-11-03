@@ -6,7 +6,7 @@ from app.repository.externalMaestroWS import ExternalMaestroWS
 def task_ws(name, report_id, owner_id, status='success'):
     msg = "Finish Sync"
     title = "%s (%s)" % (name, report_id)
-    channel = "maestro#%s" % owner_id
+    channel = "maestro-%s" % owner_id
 
     body = {
         "method": "publish",

@@ -1,0 +1,13 @@
+{
+    "name": "API-Reports Maestro - Reports Creator",
+    "version": "0.4.0",
+    "description": "API documentation - RestFull",
+    "apidoc": {
+        "title": "API - Maestro Server - Reports App",
+        "url": "https://localhost:5010/apidocs/v1"
+    },
+    "order": [
+        "Ping",
+        "Crawler"
+    ]
+}

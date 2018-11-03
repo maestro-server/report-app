@@ -12,6 +12,19 @@ from app.repository.reports import Reports
 
 class ReportSingleApp(Resource):
     def get(self, table_name):
+        """
+        @api {post} /reports/<table_name>/ Get Table Data
+        @apiName GetTableData
+        @apiGroup Reports
+
+        @apiParam(Param) {String} table_name Table Name
+
+        @apiSuccessExample {json} Success-Response:
+                HTTP/1.1 200 OK
+                 [{
+                    All data key: value
+                 }]
+        """
         Report = Reports(table_name)
         req = request.args.to_dict()
 
@@ -41,6 +54,18 @@ class ReportSingleApp(Resource):
         }
 
     def delete(self, table_name):
+        """
+        @api {post} /reports/<table_name>/ Delete Table Data
+        @apiName DeleteTableData
+        @apiGroup Reports
+
+        @apiParam(Param) {String} table_name Table Name
+
+        @apiSuccessExample {json} Success-Response:
+                HTTP/1.1 204
+                 {
+                 }
+        """
         try:
             data = Model().deleteCollection(table_name)
         except Exception as error:

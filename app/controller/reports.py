@@ -9,6 +9,20 @@ from app.validate.webhookValidate import Validate
 
 class ReportsApp(Resource):
     def post(self):
+        """
+        @api {post} /reports Insert Batch Process
+        @apiName PostReport
+        @apiGroup Reports
+        @apiDescription Clone the result on new database, used by reports worker
+
+        @apiParam(Param) {String} colname Colname
+        @apiParam(Param) {Array} results Results, clone the data on new db
+
+        @apiSuccessExample {json} Success-Response:
+                HTTP/1.1 201 OK
+                 {
+                 }
+        """
         valid = Validate().validate()
 
         if valid:

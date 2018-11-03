@@ -8,6 +8,19 @@ from app import app
 
 class HomeApp(Resource):
     def get(self):
+        """
+        @api {get} / Ping
+        @apiName GetPing
+        @apiGroup Ping
+
+        @apiSuccessExample {json} Success-Response:
+        HTTP/1.1 201 OK
+        {
+           app: (String)
+           description: (String)
+           version: (String)
+        }
+        """
         root_path = os.path.join(app.root_path, '..')
 
         file = open(root_path + '/package.json')

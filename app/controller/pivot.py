@@ -9,6 +9,45 @@ from app.tasks.notification import task_notification
 
 class PivotReport(Resource):
     def post(self):
+        """
+        @api {post} /reports/pivot Create a pivot graph
+        @apiName PostPivot
+        @apiGroup Reports
+
+        @apiParam(Param) {String} report_id Report ID, created by server app
+        @apiParam(Param) {String} owner_user User/Team Id [uuid]
+        @apiParam(Param) {Json} filters List of filters.
+        <br/>
+        <pre class="prettyprint language-json" data-type="json">
+        <code>filters: {
+        <br/>    applications: {
+        <br/>        enabled: true
+        <br/>        filters: [{
+        <br/>            field: "(String)",
+        <br/>            filter: "(String value)",
+        <br/>            comparer: "(Equal type)", //equal, contain, not contain
+        <br/>            typ: "(Field Type)" //boolean, string, date
+        <br/>        }]
+        <br/>        icon: "fa-code"
+        <br/>        title: "Applications"
+        <br/>    }
+        <br/>    clients: {title: "Clients", icon: "fa-user-o", enabled: true,…}
+        <br/>    servers: {title: "Servers", icon: "fa-server", enabled: true,…}
+        <br/>    systems: {title: "Systems", icon: "fa-briefcase", enabled: true,…}
+        <br/>}
+        </code>
+        </pre>
+
+        @apiSuccessExample {json} Success-Response:
+                HTTP/1.1 201 OK
+                 {
+                    pivot-id: <entry task id>,
+                    name: "pivot - (date time)",
+                    report: "pivot"
+                    status: "(String)",
+                    filters: {clients: {title: "Clients", icon: "fa-user-o", enabled: true,…},…}
+                }
+        """
         PPipeline = PivotPipeline()
         valid = Validate().validate()
 
