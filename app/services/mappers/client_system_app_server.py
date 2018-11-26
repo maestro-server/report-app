@@ -9,11 +9,11 @@ def mapperI():
         "applications": {
             "localField": "{prev}_id",
             "foreignField": "system._id",
-            "unwind": {"path": '$applications', "includeArrayIndex": 'servers', "preserveNullAndEmptyArrays": True}
+            "unwind": {"path": '$applications', "preserveNullAndEmptyArrays": True}
         },
         "servers": {
-            "localField": "{prev}servers",
-            "foreignField": "_id",
+            "localField": "{prev}_id",
+            "foreignField": "applications._id",
             "unwind": {"path": "$servers", "preserveNullAndEmptyArrays": True}
         }
     }
