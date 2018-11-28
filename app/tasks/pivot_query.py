@@ -1,5 +1,6 @@
 
 from app import celery
+from app.tasks.ws import task_ws
 from .upload_json import task_upload
 from .notification import task_notification
 from app.repository.externalMaestroData import ExternalMaestroData
@@ -17,3 +18,4 @@ def task_qpivot(owner_user, report_id, entity, pipeline=[]):
         return {'insert-id': str(insert_id)}
 
     task_notification.delay(report_id=report_id, msg="This report is empty", status='warning')
+    task_ws.delay('pivot', report_id, owner_user, status='info')

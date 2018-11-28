@@ -2,6 +2,7 @@
 import json
 from pydash import has
 from app import celery
+from app.tasks.ws import task_ws
 from .upload_json import task_upload
 from app.libs.factoryOwnerRule import getRules
 from app.tasks.notification import task_notification
@@ -25,3 +26,4 @@ def task_qgeneral(owner_user, report_id, type, filters={}):
         return {'upload-id': insert_id}
 
     task_notification.delay(report_id=report_id, msg="This report is empty", status='warning')
+    task_ws.delay('general', report_id, owner_user, status='info')
