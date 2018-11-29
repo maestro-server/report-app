@@ -5,3 +5,4 @@ from .pivot import PivotReport
 
 from .reports import ReportsApp
 from .reportSingle import ReportSingleApp
+from .reportsAggregation import ReportAggregationApp
