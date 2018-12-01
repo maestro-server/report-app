@@ -1,7 +1,6 @@
-import pandas as pd
-from flask import request
-from flask_restful import Resource
 
+from flask_restful import Resource
+from app.libs.makeAggregation import make_aggregation
 from app.repository.reports import Reports
 
 
@@ -24,15 +23,9 @@ class ReportAggregationApp(Resource):
         """
         Report = Reports(table_name)
         data = Report.getAll(limit=99999)
+        aggr = make_aggregation(data)
 
-        df =  pd.DataFrame(data)
-
-        datacenters = df['datacenters'].apply(pd.Series)
-
-
-        print(datacenters.groupby('name', as_index=False).agg({"_id": "count"}))
-
-
-
-        req = request.args.to_dict()
-        return data
+        return {
+            'name': table_name,
+            'aggr': aggr
+        }
