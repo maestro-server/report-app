@@ -13,7 +13,7 @@ def make_aggregation(data):
     for mapp in mapperA():
         result = factory.run(mapp)
 
-        if result is not None:
+        if isinstance(result, pd.Series):
             entity = mapp.uniqueField()
             aggr[entity] = {
                 'label': result.index.tolist(),
