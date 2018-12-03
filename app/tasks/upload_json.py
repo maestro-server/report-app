@@ -26,7 +26,7 @@ def task_upload(report_id, owner_user, name, result):
         webhook_id.append(str(tt))
 
     prefetch = DataFrame(result[:50], False).getHeaders()
-    aggr = make_aggregation(result)
+    aggr = make_aggregation(result, view='label')
 
     notification_id = task_notification.delay(report_id=report_id, msg=id, status='finished',
                                               more={'columns': prefetch, 'aggr': aggr})

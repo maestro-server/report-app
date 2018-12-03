@@ -1,10 +1,21 @@
-
+import sys
 import pandas as pd
 from app.services.aggregator.factoryAggr import FactoryAggr
 from app.services.mappers.aggregator import mapperA
 
 
-def make_aggregation(data):
+def view_label(result):
+    return {
+        'label': result.index.tolist(),
+        'data': result.tolist()
+    }
+
+
+def view_dict(result):
+    return result.to_dict()
+
+
+def make_aggregation(data, view='dict'):
     aggr = {}
 
     df = pd.DataFrame(data)
@@ -13,11 +24,10 @@ def make_aggregation(data):
     for mapp in mapperA():
         result = factory.run(mapp)
 
-        if isinstance(result, pd.Series):
+        if isinstance(result, pd.Series) and len(result) > 0:
             entity = mapp.uniqueField()
-            aggr[entity] = {
-                'label': result.index.tolist(),
-                'data': result.tolist()
-            }
+
+            mth = "view_%s" % view
+            aggr[entity] = getattr(sys.modules[__name__], mth)(result)
 
     return aggr

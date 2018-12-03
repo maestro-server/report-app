@@ -1,4 +1,5 @@
 
+from app.libs.logger import logger
 
 class FactoryAggr(object):
 
@@ -11,5 +12,4 @@ class FactoryAggr(object):
         if field in self._dataframe:
             df = self._dataframe[field]
             cls.aggregate(df)
-
             return cls.getResult()
