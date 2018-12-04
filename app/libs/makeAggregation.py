@@ -28,6 +28,9 @@ def make_aggregation(data, view='dict', type=None):
             entity = mapp.uniqueField()
 
             mth = "view_%s" % view
-            aggr[entity] = getattr(sys.modules[__name__], mth)(result)
+            aggr[entity] = {
+                'aggr': getattr(sys.modules[__name__], mth)(result),
+                'opts': mapp.getOpts()
+            }
 
     return aggr

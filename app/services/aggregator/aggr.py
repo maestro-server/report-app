@@ -73,3 +73,6 @@ class Aggregator(object):
 
     def getResult(self):
         return self._result
+
+    def getOpts(self):
+        return self._opts
