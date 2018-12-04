@@ -3,14 +3,21 @@ from pydash.objects import get
 
 
 class Aggregator(object):
-    def __init__(self, field, lens=None, sublens='_id'):
+    def __init__(self, field, lens=None, sublens='_id', include=[], opts={}):
         self._field = field
         self._lens = lens
         self._sublens = sublens
 
         self._result = []
         self._transf = []
+        self._include = include
+        self._opts = opts
         self._df = None
+
+    def execute(self, df, entity='all'):
+
+        if (not self._include) or (entity in self._include):
+            self.aggregate(df)
 
     def aggregate(self, df):
 

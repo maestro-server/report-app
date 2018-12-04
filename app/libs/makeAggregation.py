@@ -15,11 +15,11 @@ def view_dict(result):
     return result.to_dict()
 
 
-def make_aggregation(data, view='dict'):
+def make_aggregation(data, view='dict', type=None):
     aggr = {}
 
     df = pd.DataFrame(data)
-    factory = FactoryAggr(df)
+    factory = FactoryAggr(df, type)
 
     for mapp in mapperA():
         result = factory.run(mapp)

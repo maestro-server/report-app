@@ -7,6 +7,7 @@ def mapperA():
         Aggregator("datacenters", lens="provider"),
         Aggregator("datacenters", lens="instance"),
         Aggregator("datacenters", lens="region"),
+        Aggregator("datacenters", lens="zone", include=['servers']),
         Aggregator("provider"),
         Aggregator("size"),
 

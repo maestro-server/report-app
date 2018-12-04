@@ -21,7 +21,7 @@ def task_qgeneral(owner_user, report_id, type, filters={}):
         .get_results()
 
     if has(result, 'found') and result['found'] > 0:
-        insert_id = task_upload.delay(report_id, owner_user, 'general', result['items'])
+        insert_id = task_upload.delay(report_id, owner_user, 'general', result['items'], type)
 
         return {'upload-id': insert_id}
 
