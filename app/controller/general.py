@@ -2,6 +2,7 @@ import json
 from flask_restful import Resource
 
 from app.libs.logger import logger
+from app.repository.model import Model
 from app.services.factoryFilter import FactoryFilters
 from app.validate.generalValidate import Validate
 from app.tasks.general_query import task_qgeneral
@@ -9,6 +10,15 @@ from app.tasks.notification import task_notification
 
 
 class GeneralReport(Resource):
+    """
+    @api {patch} /reports/general Update general graph
+    @apiName UpdateGeneral
+    @apiGroup Reports
+    @apiDescription Same contract of post
+    """
+    def patch(self):
+        return self.post()
+
     """
     @api {post} /reports/general/ Create general graph
     @apiName PostGeneral
@@ -49,7 +59,6 @@ class GeneralReport(Resource):
                 'general-id': (Report ID)
                 }
     """
-    
     def post(self):
         valid = Validate().validate()
 
@@ -64,8 +73,12 @@ class GeneralReport(Resource):
                 return {'message': str(error)}, 501
 
             if (prepared is not None):
-                general_id = task_qgeneral.delay(valid['owner_user'], valid['report_id'], valid['component'], prepared)
+                colname = '%s_%s' % (valid['report_id'], 'general')
+                Model().deleteCollection(colname)
 
+                general_id = task_qgeneral.delay(valid['owner_user'], valid['report_id'], valid['component'], prepared)
                 return {'filter': valid['filters'], 'general-id': str(general_id)}
 
         return valid, 502
+
+        

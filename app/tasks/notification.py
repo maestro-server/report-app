@@ -5,7 +5,7 @@ from app.repository.externalMaestro import ExternalMaestro
 
 
 @celery.task(name="notification.api")
-def task_notification(report_id, msg, status='success', more={}):
+def task_notification(report_id, msg="completed", status='success', more={}):
     data = {'_id': report_id, 'status': status, 'msg': msg}
     merged = {**data, **more}
 

@@ -2,8 +2,10 @@ import datetime
 from pymongo import InsertOne
 from pymongo.errors import BulkWriteError
 from pydash import omit
+
 from app import db
 from app.repository.model import Model
+from app.validate.integrityData import validate
 
 
 class Reports(object):
@@ -31,8 +33,9 @@ class Reports(object):
     def batch_process(self, data):
         requests = []
         for item in data:
-            cal = InsertOne(omit(item['data'], '_id'))
-            requests.append(cal)
+            if validate(item):
+                cal = InsertOne(omit(item, '_id'))
+                requests.append(cal)
 
         try:
             result = self.col.bulk_write(requests)
