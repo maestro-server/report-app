@@ -55,7 +55,7 @@ class PivotPipeline(object):
         return {
             "$lookup": {
                 "from": key,
-                "localField": get(mapper, '%s.localField' % key).replace('{prev}', prev),
+                "localField": get(mapper, '%s.localField' % key, '').replace('{prev}', prev),
                 "foreignField": get(mapper, '%s.foreignField' % key),
                 "as": key
             }
