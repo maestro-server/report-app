@@ -1,6 +1,6 @@
 import json
 from flask_restful import Resource
-
+from app.repository.model import Model
 from app.validate.pivotValidate import Validate
 from app.services.pivotPipeline import PivotPipeline
 from app.tasks.pivot_query import task_qpivot
@@ -8,6 +8,15 @@ from app.tasks.notification import task_notification
 
 
 class PivotReport(Resource):
+    """
+    @api {patch} /reports/pivot Update pivot graph
+    @apiName UpdatePivot
+    @apiGroup Reports
+    @apiDescription Same contract of post
+    """
+    def patch(self):
+        return self.post()
+
     def post(self):
         """
         @api {post} /reports/pivot Create a pivot graph
@@ -60,6 +69,9 @@ class PivotReport(Resource):
                 return {'message': str(error)}, 501
 
             if PPipeline.hasResult():
+                colname = '%s_%s' % (valid['report_id'], 'pivot')
+                data = Model().deleteCollection(colname)
+
                 pivot_id = task_qpivot.delay(valid['owner_user'], valid['report_id'], PPipeline.getFirst(),
                                              PPipeline.getResult())
 

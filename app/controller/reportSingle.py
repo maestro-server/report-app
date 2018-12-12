@@ -13,7 +13,7 @@ from app.repository.reports import Reports
 class ReportSingleApp(Resource):
     def get(self, table_name):
         """
-        @api {post} /reports/<table_name>/ Get Table Data
+        @api {get} /reports/<table_name>/ Get Table Data
         @apiName GetTableData
         @apiGroup Reports
 
@@ -22,7 +22,11 @@ class ReportSingleApp(Resource):
         @apiSuccessExample {json} Success-Response:
                 HTTP/1.1 200 OK
                  [{
-                    All data key: value
+                    "limit": <int>,
+                    "total_pages": <int>,
+                    "found": <int>,
+                    "page": <int>,
+                    "items": []
                  }]
         """
         Report = Reports(table_name)
@@ -55,7 +59,7 @@ class ReportSingleApp(Resource):
 
     def delete(self, table_name):
         """
-        @api {post} /reports/<table_name>/ Delete Table Data
+        @api {delete} /reports/<table_name>/ Delete Table Data
         @apiName DeleteTableData
         @apiGroup Reports
 
