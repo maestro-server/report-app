@@ -1,5 +1,4 @@
 FROM maestroserver/maestro-pandas
-MAINTAINER Felipe Signorini <felipe.signorini@maestroserver.io>
 
 COPY docker-entrypoint-workers.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint-workers.sh
