@@ -8,9 +8,11 @@ from pydash import defaults, has
 from app.repository.model import Model
 from app.services.filter import FilterAPI
 from app.repository.reports import Reports
+from app.services.privateAuth import private_auth
 
 
 class ReportSingleApp(Resource):
+    @private_auth
     def get(self, table_name):
         """
         @api {get} /reports/<table_name>/ Get Table Data
@@ -57,6 +59,7 @@ class ReportSingleApp(Resource):
             'items': Report.getAll(args, limit, skip, orderBy, direction)
         }
 
+    @private_auth
     def delete(self, table_name):
         """
         @api {delete} /reports/<table_name>/ Delete Table Data

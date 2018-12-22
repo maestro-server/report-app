@@ -1,6 +1,7 @@
 import json
 from flask_restful import Resource
 from app.repository.model import Model
+from app.services.privateAuth import private_auth
 from app.validate.pivotValidate import Validate
 from app.services.pivotPipeline import PivotPipeline
 from app.tasks.pivot_query import task_qpivot
@@ -14,9 +15,12 @@ class PivotReport(Resource):
     @apiGroup Reports
     @apiDescription Same contract of post
     """
+
+    @private_auth
     def patch(self):
         return self.post()
 
+    @private_auth
     def post(self):
         """
         @api {post} /reports/pivot Create a pivot graph

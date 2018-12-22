@@ -15,6 +15,7 @@ MarkupSafe==1.0
 numpy==1.14.5
 pandas==0.23.1
 pydash==4.7.4
+PyJWT==1.7.1
 pymongo==3.7.0
 python-dateutil==2.7.3
 python-dotenv==0.10

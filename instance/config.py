@@ -22,5 +22,8 @@ class Config(object):
     MAESTRO_REPORT_URI = os.environ.get("MAESTRO_REPORT_URI", "http://localhost:5005")
     MAESTRO_WEBSOCKET_URI = os.environ.get("MAESTRO_WEBSOCKET_URI", "http://localhost:8000")
 
+    SECRETJWT_PRIVATE = os.environ.get("MAESTRO_SECRETJWT_PRIVATE", "defaultSecretKeyPrivate")
+    NOAUTH = os.environ.get("MAESTRO_NOAUTH", "defaultSecretNoAuthToken")
+
     CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL", 'amqp://localhost')
     CELERY_DEFAULT_QUEUE = 'reports'

@@ -4,10 +4,12 @@ from flask_restful import Resource
 from app.libs.logger import logger
 
 from app.repository.reports import Reports
+from app.services.privateAuth import private_auth
 from app.validate.webhookValidate import Validate
 
 
 class ReportsApp(Resource):
+    @private_auth
     def post(self):
         """
         @api {post} /reports Insert Batch Process

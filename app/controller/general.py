@@ -4,6 +4,7 @@ from flask_restful import Resource
 from app.libs.logger import logger
 from app.repository.model import Model
 from app.services.factoryFilter import FactoryFilters
+from app.services.privateAuth import private_auth
 from app.validate.generalValidate import Validate
 from app.tasks.general_query import task_qgeneral
 from app.tasks.notification import task_notification
@@ -16,6 +17,8 @@ class GeneralReport(Resource):
     @apiGroup Reports
     @apiDescription Same contract of post
     """
+
+    @private_auth
     def patch(self):
         return self.post()
 
@@ -59,6 +62,8 @@ class GeneralReport(Resource):
                 'general-id': (Report ID)
                 }
     """
+
+    @private_auth
     def post(self):
         valid = Validate().validate()
 

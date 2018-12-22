@@ -12,6 +12,7 @@ from app.libs.logger import logger
 
 app = Flask(__name__)
 app.config.from_object('instance.config.Config')
+app.config.from_object('app.services.privateAuth.config.config.Config')
 
 with MongoClient(app.config['DATABASE_URI'], serverSelectionTimeoutMS=1) as client:
     db = client[app.config['DATABASE_NAME']]

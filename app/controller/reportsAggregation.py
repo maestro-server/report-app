@@ -2,10 +2,11 @@
 from flask_restful import Resource
 from app.libs.makeAggregation import make_aggregation
 from app.repository.reports import Reports
+from app.services.privateAuth import private_auth
 
 
 class ReportAggregationApp(Resource):
-
+    @private_auth
     def get(self, table_name):
         """
         @api {get} /aggregation/<table_name>/ Get Data Aggregation
