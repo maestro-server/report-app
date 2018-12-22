@@ -52,6 +52,11 @@ class GeneralReport(Resource):
     </code>
     </pre>
 
+    @apiPermission JWT Private (MAESTRO_SECRETJWT_PRIVATE)
+    @apiHeader (Header) {String} Authorization JWT {Token}
+    
+    @apiError (Error) PermissionError Token don`t have permission
+    @apiError (Error) Unauthorized Invalid Token
     @apiError (Error) BadRequest Missing parameters
     @apiError (Error) NotFound List is empty
 

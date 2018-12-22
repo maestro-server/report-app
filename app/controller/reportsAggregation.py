@@ -15,6 +15,12 @@ class ReportAggregationApp(Resource):
 
         @apiParam(Param) {String} table_name Table Name
 
+        @apiPermission JWT Private (MAESTRO_SECRETJWT_PRIVATE)
+        @apiHeader (Header) {String} Authorization JWT {Token}
+
+        @apiError (Error) PermissionError Token don`t have permission
+        @apiError (Error) Unauthorized Invalid Token
+
         @apiSuccessExample {json} Success-Response:
                 HTTP/1.1 200 OK
                  [{
