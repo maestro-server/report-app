@@ -18,6 +18,7 @@ To test out the demo, [Demo Online](http://demo.maestroserver.io "Demo Online")
 
 * Understand complex queries and generate reports
 * Manage storage and control each technical flow
+* Aggregate data
 * Transform in artifact pdf, csv or json
 
 **Reports API, organized by modules:**
@@ -25,11 +26,10 @@ To test out the demo, [Demo Online](http://demo.maestroserver.io "Demo Online")
 * API Rest
 * Worker - General Query
 * Worker - Pivot Query
-* Worker - Transform - CSV
-* Worker - Transform - Inventory (Ansible)
-* Worker - Transform - PDF
-* Worker - Upload Json
+* Worker - Upload Json - Filters data
+* Worker - Webhook - Copy data to reports database
 * Worker - Notification (Events)
+* Worker - WS (Websocket Events)
 
 ## Setup ##
 
@@ -67,6 +67,9 @@ FLASK_APP=run.py FLASK_DEBUG=1 flask run --port 5005
 or
 
 npm run server
+
+// ping 
+curl http://localhost:5005
 ```
 
 #### Install run rabbit workers ####
@@ -80,22 +83,30 @@ npm run celery
 ```
 
 ## TechStack ##
-* Python < 3.4
+* Python < 3.6
 * Flask
+* Pandas
+* NumPy
 * Celery
 * RabbitMq
 
 ### Env variables ###
 
-| Env Variables          | Example               | Description                             |
-|------------------------|-----------------------|-----------------------------------------|
-| MAESTRO_PORT           | 5005                  | Reports API Port                        |
-| MAESTRO_MONGO_URI      | localhost             | Mongo Url conn                          |
-| MAESTRO_MONGO_DATABASE | maestro-reports       | Db name, its differente of servers-app  |
-| MAESTRO_DATA_URI       | http://localhost:5010 | Data APP - API URL                      |
-| MAESTRO_REPORT_URI     | http://localhost:5005 | Report api                              |
-| MAESTRO_INSERT_QTD     | 200                   | Throughput insert in reports collection |
-| CELERY_BROKER_URL      | amqp://rabbitmq:5672  | RabbitMQ connection                     |
+| Env Variables             | Example               | Description                                |
+|---------------------------|-----------------------|--------------------------------------------|
+| MAESTRO_PORT              | 5005                  | Reports API Port                           |
+| MAESTRO_MONGO_URI         | localhost             | Mongo Url conn                             |
+| MAESTRO_MONGO_DATABASE    | maestro-reports       | Db name, its differente of servers-app     |
+| MAESTRO_DATA_URI          | http://localhost:5010 | Data APP - API URL                         |
+| MAESTRO_REPORT_URI        | http://localhost:5005 | Report App - API URL                       |
+| MAESTRO_WEBSOCKET_URI     | http://localhost:8000 | Webosocket App - API URL                   |
+| MAESTRO_INSERT_QTD        | 200                   | Throughput insert in reports collection    |
+|                           |                       |                                            | 
+| MAESTRO_SECRETJWT_PRIVATE | XXX                   | Secret Hash for JWT private connections    |
+| MAESTRO_NOAUTH            | XXX                   | Secret Key to validate private connections |
+|                           |                       |                                            |
+| CELERY_BROKER_URL         | amqp://rabbitmq:5672  | RabbitMQ connection                        |                
+
 
 ### Contribute ###
 
