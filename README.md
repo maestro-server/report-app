@@ -101,9 +101,10 @@ npm run celery
 | MAESTRO_REPORT_URI        | http://localhost:5005 | Report App - API URL                       |
 | MAESTRO_WEBSOCKET_URI     | http://localhost:8000 | Webosocket App - API URL                   |
 | MAESTRO_INSERT_QTD        | 200                   | Throughput insert in reports collection    |
-|                           |                       |                                            | 
-| MAESTRO_SECRETJWT_PRIVATE | XXX                   | Secret Hash for JWT private connections    |
-| MAESTRO_NOAUTH            | XXX                   | Secret Key to validate private connections |
+|                           |                       |                                            |
+| MAESTRO_WEBSOCKET_SECRET  | XXXX                  | Secret Key - JWT Websocket connections     |
+| MAESTRO_SECRETJWT_PRIVATE | XXX                   | Secret Key - JWT private connections       |
+| MAESTRO_NOAUTH            | XXX                   | Secret Pass - validate private connections |
 |                           |                       |                                            |
 | CELERY_BROKER_URL         | amqp://rabbitmq:5672  | RabbitMQ connection                        |                
 
