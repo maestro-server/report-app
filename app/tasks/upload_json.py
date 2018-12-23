@@ -32,9 +32,7 @@ def task_upload(report_id, owner_user, name, result, type=None):
                                               more={'columns': prefetch, 'aggr': aggr})
 
     task_audit.delay(report_id, {'aggr': aggr})
-
     task_ws.delay(name, report_id, owner_user)
-
 
     return {'colname': colname, 'notification_id': str(notification_id),
             'webhook-id': webhook_id}
