@@ -5,6 +5,7 @@ from app.libs.dataFrame import DataFrame
 from app.tasks.webhook import task_webhook
 from app.tasks.notification import task_notification
 from app.tasks.ws import task_ws
+from app.tasks.audit import task_audit
 from app.libs.makeAggregation import make_aggregation
 
 
@@ -29,6 +30,8 @@ def task_upload(report_id, owner_user, name, result, type=None):
 
     notification_id = task_notification.delay(report_id=report_id, status='finished',
                                               more={'columns': prefetch, 'aggr': aggr})
+
+    task_audit.delay(report_id, {'aggr': aggr})
 
     task_ws.delay(name, report_id, owner_user)
 

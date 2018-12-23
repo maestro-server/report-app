@@ -99,6 +99,7 @@ npm run celery
 | MAESTRO_MONGO_DATABASE    | maestro-reports       | Db name, its differente of servers-app     |
 | MAESTRO_DATA_URI          | http://localhost:5010 | Data APP - API URL                         |
 | MAESTRO_REPORT_URI        | http://localhost:5005 | Report App - API URL                       |
+| MAESTRO_AUDIT_URI         | http://localhost:10900| Audit App - API URL                        |
 | MAESTRO_WEBSOCKET_URI     | http://localhost:8000 | Webosocket App - API URL                   |
 | MAESTRO_INSERT_QTD        | 200                   | Throughput insert in reports collection    |
 |                           |                       |                                            |
