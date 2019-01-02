@@ -30,6 +30,8 @@ To test out the demo, [Demo Online](http://demo.maestroserver.io "Demo Online")
 * Worker - Pivot Query
 * Worker - Upload Json - Filters data
 * Worker - Webhook - Copy data to reports database
+* Worker - Aggr - Execute agggregation task and save in report collections
+* Worker - Audit - Send aggr data to audit service
 * Worker - Notification (Events)
 * Worker - WS (Websocket Events)
 
