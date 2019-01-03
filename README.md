@@ -21,7 +21,7 @@ To test out the demo, [Demo Online](http://demo.maestroserver.io "Demo Online")
 * Aggregate data
 * Transform in artifact pdf, csv or json
 
-![arch](http://docs.maestroserver.io/en/latest/_images/reports.png)
+![arch](http://docs.maestroserver.io/en/latest/_images/reports_arch.png)
 
 **Reports API, organized by modules:**
 
