@@ -21,6 +21,8 @@ To test out the demo, [Demo Online](http://demo.maestroserver.io "Demo Online")
 * Aggregate data
 * Transform in artifact pdf, csv or json
 
+![arch](http://docs.maestroserver.io/en/latest/_images/reports_arch.png)
+
 **Reports API, organized by modules:**
 
 * API Rest
@@ -28,6 +30,8 @@ To test out the demo, [Demo Online](http://demo.maestroserver.io "Demo Online")
 * Worker - Pivot Query
 * Worker - Upload Json - Filters data
 * Worker - Webhook - Copy data to reports database
+* Worker - Aggr - Execute aggregation task and save in report collections
+* Worker - Audit - Send aggr data to audit service
 * Worker - Notification (Events)
 * Worker - WS (Websocket Events)
 
