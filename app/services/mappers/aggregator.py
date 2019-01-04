@@ -4,7 +4,7 @@ from app.services.aggregator.aggr import Aggregator
 def mapperA():
     return [
         Aggregator("datacenters", lens="provider", opts={'ct': 'doughnut', 'txt': 'Providers', 'order': 1}),
-        Aggregator("provider", opts={'ct': 'doughnut', 'txt': 'Providers', 'order': 1}),
+        Aggregator("provider", opts={'ct': 'doughnut', 'txt': 'Resource', 'order': 1}),
         Aggregator("servers", lens="datacenters.provider", opts={'ct': 'doughnut', 'txt': 'Providers (by Servers)', 'order': 1}),
         Aggregator("applications", lens="datacenters.provider", sublens="datacenters,provider", opts={'ct': 'doughnut', 'txt': 'Providers (by Apps)', 'order': 1}),
 
