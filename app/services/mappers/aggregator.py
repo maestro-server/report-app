@@ -50,5 +50,9 @@ def mapperA():
         Aggregator("systems", lens="clients", sublens="name", opts={'ct': 'bar', 'txt': 'Clients', 'size': 'col-sm-8', 'legend': False, 'order': 16}),
         Aggregator("clients", lens="name", sublens="name", opts={'ct': 'bar', 'txt': 'Clients', 'size': 'col-sm-8', 'legend': False, 'order': 16}),
 
-        Aggregator("tags", sublens="key", opts={'ct': 'total', 'txt': 'Tags', 'limit': 12, 'order': 17})
+        Aggregator("tags", sublens="key", opts={'ct': 'total', 'txt': 'Tags', 'limit': 12, 'order': 17}),
+
+        Aggregator("active", opts={'ct': 'pie', 'txt': 'Active', 'limit': 12, 'order': 18}),
+
+        Aggregator("roles", sublens="refs", opts={'ct': 'total', 'txt': 'Access Refs', 'limit': 12, 'order': 19})
     ]
