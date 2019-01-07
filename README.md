@@ -111,7 +111,7 @@ npm run celery
 | MAESTRO_SECRETJWT_PRIVATE | XXX                   | Secret Key - JWT private connections       |
 | MAESTRO_NOAUTH            | XXX                   | Secret Pass - validate private connections |
 |                           |                       |                                            |
-| CELERY_BROKER_URL         | amqp://rabbitmq:5672  | RabbitMQ connection                        |                
+| CELERY_BROKER_URL         | amqp://rabbitmq:5672  | RabbitMQ connection or SQS connection      |                
 
 
 ### Contribute ###
