@@ -15,7 +15,7 @@ class Config(object):
     RESTFUL_JSON = {'cls': DateTimeEncoder}
     WS_SECRET = os.environ.get("MAESTRO_WEBSOCKET_SECRET", "wsSecretKey")
 
-    DATABASE_URI = "mongodb://" + os.environ.get("MAESTRO_MONGO_URI", "localhost")
+    DATABASE_URI = os.environ.get("MAESTRO_MONGO_URI", "mongodb://localhost")
     DATABASE_NAME = os.environ.get("MAESTRO_MONGO_DATABASE", "maestro-reports")
 
     MAESTRO_DATA_URI = os.environ.get("MAESTRO_DATA_URI", "http://localhost:5010")
