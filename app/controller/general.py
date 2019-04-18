@@ -64,7 +64,9 @@ class GeneralReport(Resource):
             HTTP/1.1 200 OK
                 {
                 'filter': {List of filters},
-                'general-id': (Report ID)
+                'general-id': (Celery UUID),
+                'report_id': (Report Id),
+                'component': (Component)
                 }
     """
 
@@ -87,7 +89,12 @@ class GeneralReport(Resource):
                 Model().deleteCollection(colname)
 
                 general_id = task_qgeneral.delay(valid['owner_user'], valid['report_id'], valid['component'], prepared)
-                return {'filter': valid['filters'], 'general-id': str(general_id)}
+                return {
+                    'filter': valid['filters'], 
+                    'general-id': str(general_id), 
+                    '_id': valid['report_id'], 
+                    'component': valid['component']
+                    }
 
         return valid, 502
 
