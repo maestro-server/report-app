@@ -11,8 +11,13 @@ def task_notification(report_id, msg="completed", status='success', more={}):
     merged = {**data, **more}
 
     base = app.config['MAESTRO_DATA_URI']
-    ExternalMaestro(base) \
+    
+    try:
+        ExternalMaestro(base) \
         .set_headers(create_jwt()) \
         .put_request(path="reports", body={'body': [merged]})
 
-    return {'conn_id': report_id}
+        return {'conn_id': report_id}
+
+    except Exception as error:
+        return {'message': str(error)}
