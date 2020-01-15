@@ -10,6 +10,12 @@ class FactoryAggr(object):
         field = cls.getField()
 
         if field in self._dataframe:
-            df = self._dataframe[field]
-            cls.execute(df, self._type)
-            return cls.getResult()
+            try:
+                df = self._dataframe[field]
+                cls.execute(df, self._type)
+                return cls.getResult()
+            except IndexError:
+                return {}
+
+
+
