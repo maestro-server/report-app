@@ -16,15 +16,8 @@ class DateTimeEncoder(json.JSONEncoder):
         if isinstance(obj, datetime.datetime):
             return obj.isoformat()
 
-        if isinstance(obj, (bytes, bytearray)):
-            try:
-                obj = obj.decode('utf-8')
-            except Exception as err:
-                return logger.error("==================================> Decode is not utf-8")
-
         try:
             return json.JSONEncoder.default(self, obj)
         except TypeError as error:
-            logger.error(str(error), str(obj))
-            return str(obj)
+            logger.error(str(error))
 
