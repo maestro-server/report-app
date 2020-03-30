@@ -15,6 +15,8 @@ class DateTimeEncoder(json.JSONEncoder):
         if isinstance(obj, datetime.datetime):
             return obj.isoformat()
 
-        print("============================================================================ >", type(obj))
+        try:
+            return json.JSONEncoder.default(self, obj)
+        except TypeError as error:
+            logger.error(str(error))
 
-        return json.JSONEncoder.default(self, obj)
