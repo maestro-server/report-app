@@ -4,6 +4,7 @@ from bson.objectid import ObjectId
 
 class Model(object):
     def deleteCollection(self, table_name):
+        print(table_name)
         if table_name:
             return db.drop_collection(table_name)
 
