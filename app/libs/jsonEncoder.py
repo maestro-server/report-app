@@ -2,6 +2,7 @@ import json
 import datetime
 import pandas as pd
 from bson import ObjectId
+from app.libs.logger import logger
 
 
 class DateTimeEncoder(json.JSONEncoder):
