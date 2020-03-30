@@ -15,4 +15,6 @@ class DateTimeEncoder(json.JSONEncoder):
         if isinstance(obj, datetime.datetime):
             return obj.isoformat()
 
+        print("============================================================================ >", type(obj))
+
         return json.JSONEncoder.default(self, obj)
