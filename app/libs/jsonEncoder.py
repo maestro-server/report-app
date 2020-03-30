@@ -19,5 +19,6 @@ class DateTimeEncoder(json.JSONEncoder):
         try:
             return json.JSONEncoder.default(self, obj)
         except TypeError as error:
-            logger.error(str(error))
+            logger.error(str(error), str(obj))
+            return str(obj)
 
