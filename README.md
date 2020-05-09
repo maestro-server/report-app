@@ -16,10 +16,12 @@ To test out the demo, [Demo Online](http://demo.maestroserver.io "Demo Online")
 
 # Maestro Server - Reports API #
 
-* Understand complex queries and generate reports
+Application to aggregate, filter and generate reports.
+
+* Parse complex queries and generate reports
 * Manage storage and control each technical flow
-* Aggregate data
-* Transform in artifact pdf, csv or json
+* Transform reports on artifacts such as pdf, csv or json
+* Save results on database
 
 ![arch](http://docs.maestroserver.io/en/latest/_images/reports_arch.png)
 
