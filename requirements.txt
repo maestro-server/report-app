@@ -3,7 +3,7 @@ boto3==1.12.32
 celery==4.4.2
 Flask==1.1.1
 Flask-RESTful==0.3.8
-numpy==1.18.2
+numpy==1.22.0
 pandas==1.0.3
 pycurl==7.43.0.5
 pydash==4.7.6
